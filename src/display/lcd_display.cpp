@@ -58,6 +58,8 @@ void LCDDisplay::rotate(const uint16_t degree) {
   }
 }
 
+void LCDDisplay::test() { lcd->colorBarTest(width(), height()); }
+
 void LCDDisplay::drawBitmap(const uint8_t *bitmap, const uint32_t x,
                             const uint32_t y, const uint32_t width,
                             const uint32_t height) const {
