@@ -5,7 +5,8 @@
 #include <lvgl.h>
 
 // Examples
-#include "examples/lottie/app.h"
+// #include "examples/lottie/app.h"
+#include "examples/voice-repeater/app.h"
 
 void hal_setup() {
   Serial.begin(115200);
@@ -37,5 +38,8 @@ void serial_loop() {
 
 void loop() {
   serial_loop();
+  mx_loop();
+
+  // Always keep `lv_loop()` at the end of the loop
   lv_loop();
 }
