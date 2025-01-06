@@ -5,21 +5,19 @@
 class AudioRecorder;
 
 class MainScene : public MXScene {
- public:
+ protected:
+  MXObject* titleLabel = nullptr;
+  MXObject* instructionLabel = nullptr;
+  MXObject* speakButton = nullptr;
+  MXObject* bigRing = nullptr;
+  MXObject* midRing = nullptr;
+  AudioRecorder* audioRecorder = nullptr;
+
   void onInit() override;
   void onUpdate() override;
-  void dispose() override;
+  void onDispose() override;
 
- private:
-  MXObject* _titleLabel = nullptr;
-  MXObject* _instructionLabel = nullptr;
-  MXObject* _speakButton = nullptr;
-  MXObject* _bigRing = nullptr;
-  MXObject* _midRing = nullptr;
-
-  AudioRecorder* _audioRecorder = nullptr;
-
-  void _init_pressed_style(lv_style_t* style, int32_t size);
-  void _handleSpeakButtonPressed();
-  void _handleSpeakButtonReleased();
+  void init_pressed_style(lv_style_t* style, int32_t size);
+  void handleSpeakButtonPressed();
+  void handleSpeakButtonReleased();
 };

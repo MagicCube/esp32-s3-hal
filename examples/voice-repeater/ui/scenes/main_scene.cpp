@@ -18,50 +18,49 @@ static lv_style_t midRingPressedStyle;
 void MainScene::onInit() {
   MXScene::onInit();
 
-  _audioRecorder = new AudioRecorder();
+  audioRecorder = new AudioRecorder();
 
   root()->bg(SCENE_BG_COLOR).scrollable(false);
 
-  _titleLabel =
-      &root()->label("VoiceRepeater", MX_FONT_SIZE_XL).center_x(0, 46);
-  _instructionLabel = &root()
-                           ->label()
-                           .text(INSTRUCTION_TEXT)
-                           .text(MX_FONT_SIZE_SM)
-                           .text_secondary()
-                           .text_center()
-                           .center_x(0, 82);
+  titleLabel = &root()->label("VoiceRepeater", MX_FONT_SIZE_XL).center_x(0, 46);
+  instructionLabel = &root()
+                          ->label()
+                          .text(INSTRUCTION_TEXT)
+                          .text(MX_FONT_SIZE_SM)
+                          .text_secondary()
+                          .text_center()
+                          .center_x(0, 82);
 
-  _bigRing = &root()
-                  ->object()
-                  .size(256)
-                  .center(0, 96)
-                  .bg(BUTTON_BG_COLOR, 0.15)
-                  .rounded_full()
-                  .clickable(false);
-  _midRing = &_bigRing->object()
-                  .size(200)
-                  .center()
-                  .bg(BUTTON_BG_COLOR, 0.15)
-                  .rounded_full()
-                  .clickable(false);
-  _speakButton =
-      &_bigRing->button()
+  bigRing = &root()
+                 ->object()
+                 .size(256)
+                 .center(0, 96)
+                 .bg(BUTTON_BG_COLOR, 0.15)
+                 .rounded_full()
+                 .clickable(false);
+  midRing = &bigRing->object()
+                 .size(200)
+                 .center()
+                 .bg(BUTTON_BG_COLOR, 0.15)
+                 .rounded_full()
+                 .clickable(false);
+  speakButton =
+      &bigRing->button()
            .size(144)
            .center()
            .bg(BUTTON_BG_COLOR)
            .rounded_full()
            .onClick([](MXEvent* e) { Serial.println("Clicked"); })
-           .onPressed([this](MXEvent* e) { this->_handleSpeakButtonPressed(); })
+           .onPressed([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
            .onReleased(
-               [this](MXEvent* e) { this->_handleSpeakButtonReleased(); });
-  _speakButton->image(&img_microphone).center(0).clickable(false);
+               [this](MXEvent* e) { this->handleSpeakButtonReleased(); });
+  speakButton->image(&img_microphone).center(0).clickable(false);
 
-  _init_pressed_style(&bigRingPressedStyle, 40);
-  _init_pressed_style(&midRingPressedStyle, 16);
+  init_pressed_style(&bigRingPressedStyle, 40);
+  init_pressed_style(&midRingPressedStyle, 16);
 }
 
-void MainScene::_init_pressed_style(lv_style_t* style, int32_t size) {
+void MainScene::init_pressed_style(lv_style_t* style, int32_t size) {
   lv_style_init(style);
   lv_style_set_transform_width(style, size);
   lv_style_set_transform_height(style, size);
@@ -69,45 +68,45 @@ void MainScene::_init_pressed_style(lv_style_t* style, int32_t size) {
 
 void MainScene::onUpdate() {
   MXScene::onUpdate();
-  _audioRecorder->update();
+  audioRecorder->update();
 }
 
-void MainScene::dispose() {
-  MXScene::dispose();
+void MainScene::onDispose() {
+  MXScene::onDispose();
 
-  delete _titleLabel;
-  _titleLabel = nullptr;
-  delete _instructionLabel;
-  _instructionLabel = nullptr;
-  delete _bigRing;
-  _bigRing = nullptr;
-  delete _midRing;
-  _midRing = nullptr;
-  delete _speakButton;
-  _speakButton = nullptr;
-  delete _audioRecorder;
-  _audioRecorder = nullptr;
+  delete titleLabel;
+  titleLabel = nullptr;
+  delete instructionLabel;
+  instructionLabel = nullptr;
+  delete bigRing;
+  bigRing = nullptr;
+  delete midRing;
+  midRing = nullptr;
+  delete speakButton;
+  speakButton = nullptr;
+  delete audioRecorder;
+  audioRecorder = nullptr;
 }
 
-void MainScene::_handleSpeakButtonPressed() {
-  _instructionLabel->text(
+void MainScene::handleSpeakButtonPressed() {
+  instructionLabel->text(
       "Recording...\n"
       "Release to stop and play.");
 
-  _bigRing->add_style(&bigRingPressedStyle);
-  _midRing->add_style(&midRingPressedStyle);
+  bigRing->add_style(&bigRingPressedStyle);
+  midRing->add_style(&midRingPressedStyle);
 
   Audio.playSystemSound(SYSTEM_SOUND_HIGHER_BEEP);
-  _audioRecorder->record();
+  audioRecorder->record();
 }
 
-void MainScene::_handleSpeakButtonReleased() {
-  _instructionLabel->text(INSTRUCTION_TEXT);
+void MainScene::handleSpeakButtonReleased() {
+  instructionLabel->text(INSTRUCTION_TEXT);
 
-  _bigRing->remove_style(&bigRingPressedStyle);
-  _midRing->remove_style(&midRingPressedStyle);
+  bigRing->remove_style(&bigRingPressedStyle);
+  midRing->remove_style(&midRingPressedStyle);
 
   Audio.playSystemSound(SYSTEM_SOUND_LOWER_BEEP);
-  _audioRecorder->play();
+  audioRecorder->play();
   Audio.playSystemSound(SYSTEM_SOUND_LOWER_BEEP);
 }
