@@ -7,8 +7,13 @@
 #define BUTTON_BG_COLOR rgb(0xFF2C55)
 #define SCENE_BG_COLOR rgb(0x000000)
 
+LV_IMAGE_DECLARE(img_microphone);
+
 const char* INSTRUCTION_TEXT =
     "Press and hold to record.\nRelease to stop and play.";
+
+static lv_style_t bigRingPressedStyle;
+static lv_style_t midRingPressedStyle;
 
 void MainScene::onInit() {
   MXScene::onInit();

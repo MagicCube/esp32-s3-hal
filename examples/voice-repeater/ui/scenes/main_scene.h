@@ -4,11 +4,6 @@
 
 class AudioRecorder;
 
-LV_IMAGE_DECLARE(img_microphone);
-
-static lv_style_t bigRingPressedStyle;
-static lv_style_t midRingPressedStyle;
-
 class MainScene : public MXScene {
  private:
   MXObject* _titleLabel = nullptr;
