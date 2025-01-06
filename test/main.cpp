@@ -41,4 +41,19 @@ void setup() {
   ui_setup();
 }
 
-void loop() { lv_loop(); }
+time_t last_serial_output = 0;
+void serial_loop() {
+  if (millis() - last_serial_output > 5 * 1000) {
+    // Serial.print(".");
+    // Print free memory
+    Serial.print("Free memory: ");
+    Serial.println(esp_get_free_heap_size());
+
+    last_serial_output = millis();
+  }
+}
+
+void loop() {
+  serial_loop();
+  lv_loop();
+}
