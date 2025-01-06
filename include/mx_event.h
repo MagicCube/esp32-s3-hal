@@ -2,6 +2,8 @@
 
 #include <lvgl.h>
 
+#include <functional>
+
 class MXObject;
 struct MXEvent;
 
