@@ -23,9 +23,9 @@ platform_packages =
 
 ```ini
 lib_deps =
-  https://github.com/esp-arduino-libs/ESP32_IO_Expander.git#v0.1.0
-  https://github.com/esp-arduino-libs/ESP32_Display_Panel.git#v0.1.8
-  https://github.com/MagicCube/esp32-s3-hal.git
+  ESP32_IO_Expander = https://github.com/esp-arduino-libs/ESP32_IO_Expander.git#v0.1.0
+  ESP32_Display_Panel = https://github.com/esp-arduino-libs/ESP32_Display_Panel.git#v0.1.8
+  esp32-s3-hal = https://github.com/MagicCube/esp32-s3-hal.git
   lvgl/lvgl@~9.2.2
 ```
 
@@ -61,36 +61,36 @@ default_envs = jc3636w518c
 
 [common]
 lib_deps =
- lvgl/lvgl@~9.2.2
- https://github.com/MagicCube/esp32-s3-hal.git
+  lvgl/lvgl@~9.2.2
+  esp32-s3-hal = https://github.com/MagicCube/esp32-s3-hal.git
 build_flags =
- -D LV_CONF_PATH="${platformio.libdeps_dir}/${PIOENV}/esp32-s3-hal/include/lv_conf.h"
+  -D LV_CONF_PATH="${platformio.libdeps_dir}/${PIOENV}/esp32-s3-hal/include/lv_conf.h"
 
 [esp32_s3_wroom_1_n16r8]
 platform = espressif32
 board = esp32-s3-wroom-1-n16r8
 framework = arduino
 platform_packages =
- platformio/framework-arduinoespressif32@https://github.com/espressif/arduino-esp32.git
- platformio/framework-arduinoespressif32-libs@https://github.com/espressif/esp32-arduino-libs.git#idf-release/v5.1
+  platformio/framework-arduinoespressif32@https://github.com/espressif/arduino-esp32.git
+  platformio/framework-arduinoespressif32-libs@https://github.com/espressif/esp32-arduino-libs.git#idf-release/v5.1
 build_flags =
- ${common.build_flags}
+  ${common.build_flags}
 lib_deps =
- ${common.lib_deps}
- https://github.com/esp-arduino-libs/ESP32_IO_Expander.git#v0.1.0
- https://github.com/esp-arduino-libs/ESP32_Display_Panel.git#v0.1.8
+  ${common.lib_deps}
+  ESP32_IO_Expander = https://github.com/esp-arduino-libs/ESP32_IO_Expander.git#v0.1.0
+  ESP32_Display_Panel = https://github.com/esp-arduino-libs/ESP32_Display_Panel.git#v0.1.8
 
 [env:jc3636w518c]
 extends= esp32_s3_wroom_1_n16r8
 build_flags =
   -D DEVICE_JC3636W518C
- ${esp32_s3_wroom_1_n16r8.build_flags}
+  ${esp32_s3_wroom_1_n16r8.build_flags}
 
 [env:kevin_s3_sp_v3]
 extends = esp32_s3_wroom_1_n16r8
 build_flags =
   -D DEVICE_KEVIN_S3_SP_V3
- ${esp32_s3_wroom_1_n16r8.build_flags}
+  ${esp32_s3_wroom_1_n16r8.build_flags}
 ```
 
 ## Example Code
