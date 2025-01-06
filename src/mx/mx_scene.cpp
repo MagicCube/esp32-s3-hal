@@ -8,6 +8,7 @@ void MXScene::begin() {
   }
   onInit();
   _initialized = true;
+  onLayout();
 }
 
 MXObject* MXScene::createRoot() {

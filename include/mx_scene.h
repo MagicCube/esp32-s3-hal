@@ -37,6 +37,7 @@ class MXScene {
  protected:
   virtual MXObject* createRoot();
   virtual inline void onInit() { _root = createRoot(); };
+  virtual inline void onLayout() {};
   virtual inline void onActivating() {};
   virtual inline void onDeactivating() {};
   virtual inline void onShown() {};
