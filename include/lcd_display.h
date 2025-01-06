@@ -22,6 +22,8 @@ class LCDDisplay {
 
   void rotate(const uint16_t angle);
 
+  void test();
+
   void drawBitmap(const uint8_t* bitmap, const uint32_t x, const uint32_t y,
                   const uint32_t width, const uint32_t height) const;
 
