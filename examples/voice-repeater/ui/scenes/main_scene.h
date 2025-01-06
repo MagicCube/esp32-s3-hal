@@ -5,6 +5,11 @@
 class AudioRecorder;
 
 class MainScene : public MXScene {
+ public:
+  void onInit() override;
+  void onUpdate() override;
+  void dispose() override;
+
  private:
   MXObject* _titleLabel = nullptr;
   MXObject* _instructionLabel = nullptr;
@@ -17,9 +22,4 @@ class MainScene : public MXScene {
   void _init_pressed_style(lv_style_t* style, int32_t size);
   void _handleSpeakButtonPressed();
   void _handleSpeakButtonReleased();
-
- public:
-  void onInit() override;
-  void onUpdate() override;
-  void dispose() override;
 };
