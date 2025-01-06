@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Arduino.h>
-#include <lvgl.h>
-#include <mx.h>
+#include "ui/scenes/main_scene.h"
 
-#include "main_scene.h"
+MainScene *mainScene;
 
-MainScene mainScene;
-inline void app_main() { mainScene.show(); }
+inline void app_main() {
+  mainScene = new MainScene();
+  mainScene->show();
+}

@@ -4,9 +4,7 @@
 #include <lv_integration.h>
 #include <lvgl.h>
 
-// Examples
-// #include "examples/lottie/app.h"
-#include "examples/voice-repeater/app.h"
+#include "voice-repeater/app.h"
 
 void hal_setup() {
   Serial.begin(115200);
