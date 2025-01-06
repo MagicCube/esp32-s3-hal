@@ -15,8 +15,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "lvgl/lvgl": "~1.3.0"
+    "lvgl/lvgl": "~9.2.2"
   },
-  "frameworks": "*",
-  "platforms": "*"
+  "frameworks": "arduino",
+  "platforms": "espressif32"
 }
