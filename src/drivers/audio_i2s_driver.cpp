@@ -8,11 +8,11 @@
 
 I2SClass *audio_out_init() {
   i2s_data_bit_width_t data_bit_width = I2S_DATA_BIT_WIDTH_16BIT;
-  if (AUDIO_OUT_BITS_PER_SAMPLE == 8) {
+  if (AUDIO_OUT_BIT_DEPTH == 8) {
     data_bit_width = I2S_DATA_BIT_WIDTH_8BIT;
-  } else if (AUDIO_OUT_BITS_PER_SAMPLE == 16) {
+  } else if (AUDIO_OUT_BIT_DEPTH == 16) {
     data_bit_width = I2S_DATA_BIT_WIDTH_16BIT;
-  } else if (AUDIO_OUT_BITS_PER_SAMPLE == 24) {
+  } else if (AUDIO_OUT_BIT_DEPTH == 24) {
     data_bit_width = I2S_DATA_BIT_WIDTH_24BIT;
   } else {
     data_bit_width = I2S_DATA_BIT_WIDTH_32BIT;
@@ -33,11 +33,11 @@ I2SClass *audio_out_init() {
 
 I2SClass *audio_in_init() {
   i2s_data_bit_width_t data_bit_width = I2S_DATA_BIT_WIDTH_16BIT;
-  if (AUDIO_IN_BITS_PER_SAMPLE == 8) {
+  if (AUDIO_IN_BIT_DEPTH == 8) {
     data_bit_width = I2S_DATA_BIT_WIDTH_8BIT;
-  } else if (AUDIO_IN_BITS_PER_SAMPLE == 16) {
+  } else if (AUDIO_IN_BIT_DEPTH == 16) {
     data_bit_width = I2S_DATA_BIT_WIDTH_16BIT;
-  } else if (AUDIO_IN_BITS_PER_SAMPLE == 24) {
+  } else if (AUDIO_IN_BIT_DEPTH == 24) {
     data_bit_width = I2S_DATA_BIT_WIDTH_24BIT;
   } else {
     data_bit_width = I2S_DATA_BIT_WIDTH_32BIT;
