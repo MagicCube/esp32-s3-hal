@@ -24,9 +24,6 @@ class I2SAudio {
   inline I2SClass* out() { return _out; }
   inline I2SClass* in() { return _in; }
 
-  inline size_t write(uint8_t* data, size_t length) const;
-  inline size_t read(int16_t* data, size_t length) const;
-
   void buzz(const float_t frequency, const float_t duration,
             const uint8_t volume = 100) const;
 
