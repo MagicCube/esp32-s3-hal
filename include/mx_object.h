@@ -26,7 +26,7 @@ class MXObject {
 
   inline ~MXObject() {
     if (lv_obj) {
-      lv_obj_del(lv_obj);
+      lv_obj_delete_async(lv_obj);
     }
   }
 
@@ -79,6 +79,11 @@ class MXObject {
 
   inline MXObject& src(const void* src) {
     lv_img_set_src(lv_obj, src);
+    return *this;
+  }
+
+  inline MXObject& scale(const float scale) {
+    lv_image_set_scale(lv_obj, 255 * scale);
     return *this;
   }
 
