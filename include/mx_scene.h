@@ -4,8 +4,6 @@
 
 #include "mx_object.h"
 
-#define MX_SCENE_DEFAULT_BG lv_color_black()
-
 class MXScene {
  public:
   MXScene() {}
