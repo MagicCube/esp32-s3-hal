@@ -15,6 +15,10 @@ class MXScene {
   inline bool isInitialized() const { return _initialized; }
   inline bool isActive() const { return _activeScene == this; }
   inline MXObject* root() const { return _root; }
+  inline int32_t width() const { return lv_obj_get_width(_root->lv_object()); }
+  inline int32_t height() const {
+    return lv_obj_get_height(_root->lv_object());
+  }
 
   void begin();
   virtual inline void dispose() {
