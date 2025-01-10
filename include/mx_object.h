@@ -92,7 +92,9 @@ class MXObject {
   inline lv_obj_t* lv_object() { return lv_obj; }
 
   // Size
+  int32_t w();
   MXObject* w(const int32_t width);
+  int32_t h();
   MXObject* h(const int32_t height);
   MXObject* size(const int32_t width, const int32_t height);
   inline MXObject* size(const int32_t length) { return size(length, length); }
@@ -110,7 +112,9 @@ class MXObject {
   MXObject* size_full();
 
   // Position
+  int32_t x();
   MXObject* x(const int32_t x);
+  int32_t y();
   MXObject* y(const int32_t y);
   MXObject* pos(const int32_t x, const int32_t y);
 

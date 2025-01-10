@@ -3,10 +3,14 @@
 #include "mx_color.h"
 #include "mx_scene.h"
 
+int32_t MXObject::w() { return lv_obj_get_width(lv_obj); }
+
 MXObject* MXObject::w(const int32_t width) {
   lv_obj_set_width(lv_obj, width);
   return this;
 }
+
+int32_t MXObject::h() { return lv_obj_get_height(lv_obj); }
 
 MXObject* MXObject::h(const int32_t height) {
   lv_obj_set_height(lv_obj, height);
@@ -63,10 +67,14 @@ MXObject* MXObject::size_full() {
   return this;
 }
 
+int32_t MXObject::x() { return lv_obj_get_x(lv_obj); }
+
 MXObject* MXObject::x(const int32_t x) {
   lv_obj_set_x(lv_obj, x);
   return this;
 }
+
+int32_t MXObject::y() { return lv_obj_get_y(lv_obj); }
 
 MXObject* MXObject::y(const int32_t y) {
   lv_obj_set_y(lv_obj, y);
