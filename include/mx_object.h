@@ -218,6 +218,7 @@ class MXObject {
   // Flags
   MXObject* clickable(bool value);
   MXObject* scrollable(bool value);
+  MXObject* scroll_bar(lv_scrollbar_mode_t mode);
 
   // Events
   MXObject* on(const lv_event_code_t event, const mx_event_callback_t callback);

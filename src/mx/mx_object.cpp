@@ -291,6 +291,11 @@ MXObject* MXObject::scrollable(bool value = true) {
   return this;
 }
 
+MXObject* MXObject::scroll_bar(lv_scrollbar_mode_t mode) {
+  lv_obj_set_scrollbar_mode(lv_obj, mode);
+  return this;
+}
+
 MXObject* MXObject::on(const lv_event_code_t event,
                        const mx_event_callback_t callback) {
   MXEvent* mx_event = new MXEvent{event, this, callback};
