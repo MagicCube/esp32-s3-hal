@@ -219,6 +219,16 @@ class MXObject {
   MXObject* clickable(bool value);
   MXObject* scrollable(bool value);
   MXObject* scroll_bar(lv_scrollbar_mode_t mode);
+  inline MXObject* scroll_bar_hidden() {
+    return scroll_bar(LV_SCROLLBAR_MODE_OFF);
+  }
+  inline MXObject* scroll_bar_auto() {
+    return scroll_bar(LV_SCROLLBAR_MODE_AUTO);
+  }
+  inline MXObject* scroll_bar_active() {
+    return scroll_bar(LV_SCROLLBAR_MODE_ACTIVE);
+  }
+  inline MXObject* scroll_bar_on() { return scroll_bar(LV_SCROLLBAR_MODE_ON); }
 
   // Events
   MXObject* on(const lv_event_code_t event, const mx_event_callback_t callback);
