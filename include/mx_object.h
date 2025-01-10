@@ -89,6 +89,11 @@ class MXObject {
     return this;
   }
 
+  inline MXObject* rotate(const float degrees) {
+    lv_img_set_angle(lv_obj, degrees * 10);
+    return this;
+  }
+
   inline lv_obj_t* lv_object() { return lv_obj; }
 
   // Size
