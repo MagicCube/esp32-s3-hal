@@ -5,9 +5,13 @@
 #include "display_conf.h"
 #include "touch_lcd_display.h"
 
+#define DRAW_BUFFER_HEIGHT DISPLAY_RES_HEIGHT / 100 * 100
 #define DRAW_BUFFER_SIZE \
-  (DISPLAY_RES_WIDTH * DISPLAY_RES_HEIGHT * (LV_COLOR_DEPTH / 8) / 10)
-uint32_t draw_buffer[DRAW_BUFFER_SIZE];
+  (DISPLAY_RES_WIDTH * (DRAW_BUFFER_HEIGHT) * (LV_COLOR_DEPTH / 8))
+uint32_t *draw_buffer =
+    (uint32_t *)heap_caps_malloc(DRAW_BUFFER_SIZE, MALLOC_CAP_SPIRAM);
+uint32_t *draw_buffer_2 =
+    (uint32_t *)heap_caps_malloc(DRAW_BUFFER_SIZE, MALLOC_CAP_SPIRAM);
 
 extern TouchLCDDisplay Display;
 
@@ -19,7 +23,7 @@ inline void lv_setup_display() {
                        lv_area_get_height(area));
     lv_display_flush_ready(disp);
   });
-  lv_display_set_buffers(disp, draw_buffer, NULL, sizeof(draw_buffer),
+  lv_display_set_buffers(disp, draw_buffer, draw_buffer_2, DRAW_BUFFER_SIZE,
                          LV_DISPLAY_RENDER_MODE_PARTIAL);
 }
 
