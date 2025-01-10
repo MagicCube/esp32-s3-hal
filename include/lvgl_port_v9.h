@@ -6,7 +6,7 @@
 #include "touch_lcd_display.h"
 
 #define DRAW_BUFFER_SIZE \
-  (DISPLAY_RES_WIDTH * DISPLAY_RES_HEIGHT * (LV_COLOR_DEPTH / 8) / 5)
+  (DISPLAY_RES_WIDTH * DISPLAY_RES_HEIGHT * (LV_COLOR_DEPTH / 8) / 10)
 uint32_t draw_buffer[DRAW_BUFFER_SIZE];
 
 extern TouchLCDDisplay Display;
