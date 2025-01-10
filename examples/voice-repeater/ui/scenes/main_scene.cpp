@@ -20,41 +20,41 @@ void MainScene::onInit() {
 
   audioRecorder = new AudioRecorder();
 
-  root()->bg(SCENE_BG_COLOR).scrollable(false);
+  root()->bg(SCENE_BG_COLOR)->scrollable(false);
 
-  titleLabel = &root()->label("VoiceRepeater", MX_FONT_SIZE_XL).center_x(0, 46);
-  instructionLabel = &root()
-                          ->label()
-                          .text(INSTRUCTION_TEXT)
-                          .text(MX_FONT_SIZE_SM)
-                          .text_secondary()
-                          .text_center()
-                          .center_x(0, 82);
+  titleLabel = root()->label("VoiceRepeater", MX_FONT_SIZE_XL)->center_x(0, 46);
+  instructionLabel = root()
+                         ->label()
+                         ->text(INSTRUCTION_TEXT)
+                         ->text(MX_FONT_SIZE_SM)
+                         ->text_secondary()
+                         ->text_center()
+                         ->center_x(0, 82);
 
-  bigRing = &root()
-                 ->object()
-                 .size(256)
-                 .center(0, 96)
-                 .bg(BUTTON_BG_COLOR, 0.15)
-                 .rounded_full()
-                 .clickable(false);
-  midRing = &bigRing->object()
-                 .size(200)
-                 .center()
-                 .bg(BUTTON_BG_COLOR, 0.15)
-                 .rounded_full()
-                 .clickable(false);
+  bigRing = root()
+                ->object()
+                ->size(256)
+                ->center(0, 96)
+                ->bg(BUTTON_BG_COLOR, 0.15)
+                ->rounded_full()
+                ->clickable(false);
+  midRing = bigRing->object()
+                ->size(200)
+                ->center()
+                ->bg(BUTTON_BG_COLOR, 0.15)
+                ->rounded_full()
+                ->clickable(false);
   speakButton =
-      &bigRing->button()
-           .size(144)
-           .center()
-           .bg(BUTTON_BG_COLOR)
-           .rounded_full()
-           .onClick([](MXEvent* e) { Serial.println("Clicked"); })
-           .onPressed([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
-           .onReleased(
-               [this](MXEvent* e) { this->handleSpeakButtonReleased(); });
-  speakButton->image(&img_microphone).center(0).clickable(false);
+      bigRing->button()
+          ->size(144)
+          ->center()
+          ->bg(BUTTON_BG_COLOR)
+          ->rounded_full()
+          ->onClick([](MXEvent* e) { Serial.println("Clicked"); })
+          ->onPressed([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
+          ->onReleased(
+              [this](MXEvent* e) { this->handleSpeakButtonReleased(); });
+  speakButton->image(&img_microphone)->center(0)->clickable(false);
 
   init_pressed_style(&bigRingPressedStyle, 40);
   init_pressed_style(&midRingPressedStyle, 16);

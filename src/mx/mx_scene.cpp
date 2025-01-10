@@ -13,7 +13,7 @@ void MXScene::begin() {
 
 MXObject* MXScene::createRoot() {
   auto root = new MXObject();
-  root->bg(MX_SCENE_DEFAULT_BG);
+  root->bg(MX_SCENE_DEFAULT_BG)->size_full()->pos(0, 0);
   return root;
 }
 
