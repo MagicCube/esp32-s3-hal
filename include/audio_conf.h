@@ -2,7 +2,7 @@
 
 // e.g. Microphone
 #define AUDIO_IN_CHANNELS 1
-#define AUDIO_IN_SAMPLE_RATE 16000
+#define AUDIO_IN_SAMPLE_RATE 8000
 #define AUDIO_IN_BIT_DEPTH 16
 #define AUDIO_IN_FPS 25
 #define AUDIO_IN_FRAME_SIZE \
