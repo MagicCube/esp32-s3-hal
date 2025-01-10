@@ -171,6 +171,7 @@ class MXObject {
 
   // Text
   MXObject* text(const char* text);
+  inline MXObject* text(String str) { return text(str.c_str()); };
   MXObject* text_format(const char* format, ...);
 
   // Text Style
