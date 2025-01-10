@@ -22,9 +22,10 @@ void MainScene::onInit() {
 
   root()->bg(SCENE_BG_COLOR)->scrollable(false);
 
-  titleLabel = root()->label("VoiceRepeater", MX_FONT_SIZE_XL)->center_x(0, 46);
+  titleLabel =
+      root()->add_label("VoiceRepeater", MX_FONT_SIZE_XL)->center_x(0, 46);
   instructionLabel = root()
-                         ->label()
+                         ->add_label()
                          ->text(INSTRUCTION_TEXT)
                          ->text(MX_FONT_SIZE_SM)
                          ->text_secondary()
@@ -32,20 +33,20 @@ void MainScene::onInit() {
                          ->center_x(0, 82);
 
   bigRing = root()
-                ->object()
+                ->add_object()
                 ->size(256)
                 ->center(0, 96)
                 ->bg(BUTTON_BG_COLOR, 0.15)
                 ->rounded_full()
                 ->clickable(false);
-  midRing = bigRing->object()
+  midRing = bigRing->add_object()
                 ->size(200)
                 ->center()
                 ->bg(BUTTON_BG_COLOR, 0.15)
                 ->rounded_full()
                 ->clickable(false);
   speakButton =
-      bigRing->button()
+      bigRing->add_button()
           ->size(144)
           ->center()
           ->bg(BUTTON_BG_COLOR)
@@ -54,7 +55,7 @@ void MainScene::onInit() {
           ->onPressed([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
           ->onReleased(
               [this](MXEvent* e) { this->handleSpeakButtonReleased(); });
-  speakButton->image(&img_microphone)->center(0)->clickable(false);
+  speakButton->add_image(&img_microphone)->center(0)->clickable(false);
 
   init_pressed_style(&bigRingPressedStyle, 40);
   init_pressed_style(&midRingPressedStyle, 16);

@@ -30,7 +30,8 @@ class MXObject {
     }
   }
 
-  inline MXObject* object(const int32_t width = -1, const int32_t height = -1) {
+  inline MXObject* add_object(const int32_t width = -1,
+                              const int32_t height = -1) {
     lv_obj_t* lv_object = lv_obj_create(lv_obj);
     MXObject* object = new MXObject(lv_object);
     if (width >= 0) {
@@ -44,8 +45,8 @@ class MXObject {
     return object;
   }
 
-  inline MXObject* label(const char* text = nullptr,
-                         const MXFontSize fontSize = MX_FONT_SIZE_DEFAULT) {
+  inline MXObject* add_label(const char* text = nullptr,
+                             const MXFontSize fontSize = MX_FONT_SIZE_DEFAULT) {
     lv_obj_t* lv_label = lv_label_create(lv_obj);
     MXObject* label = new MXObject(lv_label);
     if (text != nullptr) {
@@ -55,8 +56,9 @@ class MXObject {
     return label;
   }
 
-  inline MXObject* button(const char* text = nullptr,
-                          const MXFontSize fontSize = MX_FONT_SIZE_DEFAULT) {
+  inline MXObject* add_button(
+      const char* text = nullptr,
+      const MXFontSize fontSize = MX_FONT_SIZE_DEFAULT) {
     lv_obj_t* lv_button = lv_btn_create(lv_obj);
     MXObject* button = new MXObject(lv_button);
     if (text != nullptr) {
@@ -68,7 +70,7 @@ class MXObject {
     return button;
   }
 
-  inline MXObject* image(const void* src = nullptr) {
+  inline MXObject* add_image(const void* src = nullptr) {
     lv_obj_t* lv_image = lv_img_create(lv_obj);
     MXObject* image = new MXObject(lv_image);
     if (src != nullptr) {
