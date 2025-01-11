@@ -1,6 +1,6 @@
 #pragma once
 
-#include <mx/mx.h>
+#include <mx.h>
 
 class AudioRecorder;
 
