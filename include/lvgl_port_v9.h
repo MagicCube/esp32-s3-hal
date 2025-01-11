@@ -1,10 +1,12 @@
 #pragma once
 
+#include <Arduino.h>
 #include <lvgl.h>
 
 #include "display_conf.h"
+#if DISPLAY_TOUCH_ENABLED == 1
 #include "touch_lcd_display.h"
-
+#endif
 #define DRAW_BUFFER_HEIGHT DISPLAY_RES_HEIGHT / 100 * 100
 #define DRAW_BUFFER_SIZE \
   (DISPLAY_RES_WIDTH * (DRAW_BUFFER_HEIGHT) * (LV_COLOR_DEPTH / 8))
@@ -13,7 +15,9 @@ uint32_t *draw_buffer =
 uint32_t *draw_buffer_2 =
     (uint32_t *)heap_caps_malloc(DRAW_BUFFER_SIZE, MALLOC_CAP_SPIRAM);
 
+#if DISPLAY_TOUCH_ENABLED == 1
 extern TouchLCDDisplay Display;
+#endif
 
 inline void lv_setup_display() {
   lv_display_t *disp = lv_display_create(DISPLAY_RES_WIDTH, DISPLAY_RES_HEIGHT);
@@ -27,6 +31,7 @@ inline void lv_setup_display() {
                          LV_DISPLAY_RENDER_MODE_PARTIAL);
 }
 
+#if DISPLAY_TOUCH_ENABLED == 1
 inline void lv_setup_touch() {
   lv_indev_t *indev = lv_indev_create();
   lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
@@ -42,6 +47,7 @@ inline void lv_setup_touch() {
     }
   });
 }
+#endif
 
 inline void lv_setup_theme() {
   lv_theme_t *th = lv_theme_default_init(
@@ -64,7 +70,9 @@ inline void lv_setup() {
   lv_tick_set_cb([]() { return (uint32_t)(esp_timer_get_time() / 1000); });
 
   lv_setup_display();
+#if DISPLAY_TOUCH_ENABLED == 1
   lv_setup_touch();
+#endif
   lv_setup_theme();
 }
 
