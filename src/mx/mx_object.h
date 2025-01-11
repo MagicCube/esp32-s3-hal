@@ -27,6 +27,7 @@ class MXObject {
   inline ~MXObject() {
     if (lv_obj) {
       lv_obj_delete_async(lv_obj);
+      lv_obj = nullptr;
     }
   }
 
