@@ -34,32 +34,6 @@ ESP_PanelLcd* display_init() {
   return lcd;
 }
 
-bool display_draw_bitmap(ESP_PanelLcd* lcd, const uint8_t* bitmap) {
-  uint8_t* buffer = nullptr;
-
-  try {
-    // Allocate memory for one line
-    buffer = new uint8_t[DISPLAY_RES_WIDTH * 2];
-  } catch (std::bad_alloc& e) {
-    return false;
-  }
-
-  for (int y = 0; y < DISPLAY_RES_HEIGHT; y++) {
-    for (int x = 0; x < DISPLAY_RES_WIDTH; x++) {
-      buffer[x * 2] = bitmap[y * DISPLAY_RES_WIDTH * 2 + x * 2];
-      buffer[x * 2 + 1] = bitmap[y * DISPLAY_RES_WIDTH * 2 + x * 2 + 1];
-    }
-    bool ret =
-        lcd->drawBitmapWaitUntilFinish(0, y, DISPLAY_RES_WIDTH, 1, buffer);
-    if (!ret) {
-      return false;
-    }
-  }
-
-  delete[] buffer;
-  return true;
-}
-
 void display_clear(ESP_PanelLcd* display) {
   int bytes_per_pixel = DISPLAY_COLOR_BITS / 8;
   uint8_t* color_buf = nullptr;
