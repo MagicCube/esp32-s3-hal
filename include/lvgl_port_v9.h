@@ -4,6 +4,7 @@
 #include <lvgl.h>
 
 #include "display_conf.h"
+
 #if DISPLAY_TOUCH_ENABLED == 1
 #include "touch_lcd_display.h"
 #endif
