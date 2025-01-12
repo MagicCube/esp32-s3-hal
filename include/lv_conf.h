@@ -54,7 +54,7 @@
 
 #if LV_USE_STDLIB_MALLOC == LV_STDLIB_BUILTIN
     /*Size of the memory available for `lv_malloc()` in bytes (>= 2kB)*/
-    #define LV_MEM_SIZE (256 * 1024U)          /*[bytes]*/
+    #define LV_MEM_SIZE (2048 * 1024U)          /*[bytes]*/
 
     /*Size of the memory expand for `lv_malloc()` in bytes*/
     #define LV_MEM_POOL_EXPAND_SIZE 0
@@ -288,11 +288,11 @@
     *LV_LOG_LEVEL_ERROR       Only critical issue, when the system may fail
     *LV_LOG_LEVEL_USER        Only logs added by the user
     *LV_LOG_LEVEL_NONE        Do not log anything*/
-    #define LV_LOG_LEVEL LV_LOG_LEVEL_WARN
+    #define LV_LOG_LEVEL LV_LOG_LEVEL_ERROR
 
     /*1: Print the log with 'printf';
     *0: User need to register a callback with `lv_log_register_print_cb()`*/
-    #define LV_LOG_PRINTF 0
+    #define LV_LOG_PRINTF 1
 
     /*Set callback to print the logs.
      *E.g `my_print`. The prototype should be `void my_print(lv_log_level_t level, const char * buf)`
@@ -366,11 +366,11 @@
  *Used by image decoders such as `lv_lodepng` to keep the decoded image in the memory.
  *If size is not set to 0, the decoder will fail to decode when the cache is full.
  *If size is 0, the cache function is not enabled and the decoded mem will be released immediately after use.*/
-#define LV_CACHE_DEF_SIZE       0
+#define LV_CACHE_DEF_SIZE       1024 * 1024
 
 /*Default number of image header cache entries. The cache is used to store the headers of images
  *The main logic is like `LV_CACHE_DEF_SIZE` but for image headers.*/
-#define LV_IMAGE_HEADER_CACHE_DEF_CNT 0
+#define LV_IMAGE_HEADER_CACHE_DEF_CNT 5
 
 /*Number of stops allowed per gradient. Increase this to allow more stops.
  *This adds (sizeof(lv_color_t) + 1) bytes per additional stop*/
@@ -716,12 +716,12 @@
 /*File system interfaces for common APIs */
 
 /*Setting a default driver letter allows skipping the driver prefix in filepaths*/
-#define LV_FS_DEFAULT_DRIVE_LETTER '\0'
+#define LV_FS_DEFAULT_DRIVE_LETTER 'C'
 
 /*API for fopen, fread, etc*/
-#define LV_USE_FS_STDIO 0
+#define LV_USE_FS_STDIO 1
 #if LV_USE_FS_STDIO
-    #define LV_FS_STDIO_LETTER '\0'     /*Set an upper cased letter on which the drive will accessible (e.g. 'A')*/
+    #define LV_FS_STDIO_LETTER 'C'     /*Set an upper cased letter on which the drive will accessible (e.g. 'A')*/
     #define LV_FS_STDIO_PATH ""         /*Set the working directory. File/directory paths will be appended to it.*/
     #define LV_FS_STDIO_CACHE_SIZE 0    /*>0 to cache this number of bytes in lv_fs_read()*/
 #endif
@@ -774,7 +774,7 @@
 #endif
 
 /*LODEPNG decoder library*/
-#define LV_USE_LODEPNG 0
+#define LV_USE_LODEPNG 1
 
 /*PNG decoder(libpng) library*/
 #define LV_USE_LIBPNG 0
