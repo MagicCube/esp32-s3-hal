@@ -8,9 +8,9 @@ LCDDisplay Display;
 #endif
 
 void LCDDisplay::begin() {
-  lcd = display_init();
   backlight = display_backlight_init();
-  setBrightness(75);
+  lcd = display_init();
+  setBrightness(40);
 }
 
 uint16_t LCDDisplay::width() const { return DISPLAY_RES_WIDTH; }
@@ -27,8 +27,8 @@ void LCDDisplay::sleep() {
 }
 
 void LCDDisplay::wakeUp() {
-  lcd->displayOn();
   backlight->on();
+  lcd->displayOn();
 }
 
 void LCDDisplay::rotate(const uint16_t degree) {

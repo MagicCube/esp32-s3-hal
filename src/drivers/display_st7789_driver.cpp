@@ -4,6 +4,7 @@
 #include <ESP_IOExpander.h>
 #include <ESP_Panel_Library.h>
 
+#include "assets/splash_280p.h"
 #include "display_conf.h"
 
 #ifdef DISPLAY_ST7789
@@ -29,7 +30,10 @@ ESP_PanelLcd* display_init() {
   lcd->begin();
   lcd->invertColor(true);
   lcd->displayOn();
-  display_clear(lcd);
+  // display_clear(lcd);
+  lcd->drawBitmapWaitUntilFinish(DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y,
+                                 DISPLAY_RES_WIDTH, DISPLAY_RES_HEIGHT,
+                                 splash_280p_map);
   // lcd->colorBarTest(DISPLAY_RES_WIDTH, DISPLAY_RES_HEIGHT);
   return lcd;
 }
@@ -54,8 +58,9 @@ void display_clear(ESP_PanelLcd* display) {
   // Draw the color across the entire screen
   bool ret = true;
   for (int j = 0; j < DISPLAY_RES_HEIGHT; j++) {
-    ret = display->drawBitmapWaitUntilFinish(0, j, DISPLAY_RES_WIDTH, 1,
-                                             color_buf);
+    ret = display->drawBitmapWaitUntilFinish(0 + DISPLAY_OFFSET_X,
+                                             j + DISPLAY_OFFSET_Y,
+                                             DISPLAY_RES_WIDTH, 1, color_buf);
     if (!ret) {
       break;
     }
