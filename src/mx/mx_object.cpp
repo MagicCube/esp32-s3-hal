@@ -290,6 +290,13 @@ MXObject* MXObject::clickable(bool value = true) {
   return this;
 }
 
+MXObject* MXObject::scroll_snap(const lv_scroll_snap_t snapX,
+                                const lv_scroll_snap_t snapY) {
+  lv_obj_set_scroll_snap_x(lv_obj, snapX);
+  lv_obj_set_scroll_snap_y(lv_obj, snapY);
+  return this;
+}
+
 MXObject* MXObject::scrollable(bool value = true) {
   if (value) {
     lv_obj_add_flag(lv_obj, LV_OBJ_FLAG_SCROLLABLE);

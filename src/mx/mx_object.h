@@ -228,8 +228,12 @@ class MXObject {
   MXObject* add_style(const lv_style_t* style);
   MXObject* remove_style(const lv_style_t* style);
 
-  // Flags
+  // Clickable
   MXObject* clickable(bool value);
+
+  // Scrollable
+  MXObject* scroll_snap(const lv_scroll_snap_t snapX,
+                        const lv_scroll_snap_t snapY);
   MXObject* scrollable(bool value);
   MXObject* scroll_bar(lv_scrollbar_mode_t mode);
   inline MXObject* scroll_bar_hidden() {
