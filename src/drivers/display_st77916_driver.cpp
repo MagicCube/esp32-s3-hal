@@ -10,7 +10,7 @@
 
 #include "pin_conf.h"
 
-#define DISPLAY_SPI_FREQ_HZ (50 * 1000 * 1000)
+#define DISPLAY_SPI_FREQ_HZ (80 * 1000 * 1000)
 
 void display_clear(ESP_PanelLcd* display);
 
@@ -40,22 +40,22 @@ void display_clear(ESP_PanelLcd* display) {
 
   try {
     // Allocate memory for one line
-    color_buf = new uint8_t[DISPLAY_RES_WIDTH * bytes_per_pixel];
+    color_buf = new uint8_t[DISPLAY_PHYSICAL_RES_WIDTH * bytes_per_pixel];
   } catch (std::bad_alloc& e) {
     return;
   }
 
   // Fill the buffer with the specified color
-  for (int i = 0; i < DISPLAY_RES_WIDTH; i++) {
+  for (int i = 0; i < DISPLAY_PHYSICAL_RES_WIDTH; i++) {
     color_buf[i * 2] = 0;
     color_buf[i * 2 + 1] = 0;
   }
 
   // Draw the color across the entire screen
   bool ret = true;
-  for (int j = 0; j < DISPLAY_RES_HEIGHT; j++) {
-    ret = display->drawBitmapWaitUntilFinish(0, j, DISPLAY_RES_WIDTH, 1,
-                                             color_buf);
+  for (int j = 0; j < DISPLAY_PHYSICAL_RES_HEIGHT; j++) {
+    ret = display->drawBitmapWaitUntilFinish(0, j, DISPLAY_PHYSICAL_RES_WIDTH,
+                                             1, color_buf);
     if (!ret) {
       break;
     }
