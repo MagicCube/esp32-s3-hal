@@ -11,7 +11,7 @@
 
 #include "pin_conf.h"
 
-#define DISPLAY_SPI_FREQ_HZ (60 * 1000 * 1000)
+#define DISPLAY_SPI_FREQ_HZ (80 * 1000 * 1000)
 
 void display_clear(ESP_PanelLcd* display);
 
