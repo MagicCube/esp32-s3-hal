@@ -38,9 +38,18 @@ void display_clear(ESP_PanelLcd* display) {
   int bytes_per_pixel = DISPLAY_COLOR_BITS / 8;
   uint8_t* color_buf = nullptr;
   uint8_t color_buf_count = 10;
+#ifdef DISPLAY_PHYSICAL_RES_HEIGHT
   uint16_t color_buf_height = DISPLAY_PHYSICAL_RES_HEIGHT / color_buf_count;
+#else
+  uint16_t color_buf_height = DISPLAY_RES_HEIGHT / color_buf_count;
+#endif
+#ifdef DISPLAY_PHYSICAL_RES_WIDTH
   uint32_t color_buf_size =
       DISPLAY_PHYSICAL_RES_WIDTH * color_buf_height * bytes_per_pixel;
+#else
+  uint32_t color_buf_size =
+      DISPLAY_RES_WIDTH * color_buf_height * bytes_per_pixel;
+#endif
 
   try {
     // Allocate memory for one line
@@ -55,9 +64,15 @@ void display_clear(ESP_PanelLcd* display) {
 
   for (int i = 0; i < color_buf_count; i++) {
     // Draw the color across the entire screen
+#ifdef DISPLAY_PHYSICAL_RES_WIDTH
     display->drawBitmapWaitUntilFinish(0, i * color_buf_height,
                                        DISPLAY_PHYSICAL_RES_WIDTH,
                                        color_buf_height, color_buf);
+#else
+    display->drawBitmapWaitUntilFinish(0, i * color_buf_height,
+                                       DISPLAY_RES_WIDTH, color_buf_height,
+                                       color_buf);
+#endif
   }
 
   delete[] color_buf;

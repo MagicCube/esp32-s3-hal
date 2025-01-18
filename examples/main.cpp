@@ -4,7 +4,7 @@
 #include <lvgl.h>
 #include <lvgl_port_v9.h>
 
-#include "voice-repeater/app.h"
+#include "demo/app.h"
 
 void hal_setup() {
   Serial.begin(115200);
