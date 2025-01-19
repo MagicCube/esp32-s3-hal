@@ -77,7 +77,4 @@ inline void lv_setup() {
   lv_setup_theme();
 }
 
-inline void lv_loop() {
-  lv_timer_handler();
-  delay(5);
-}
+inline void lv_loop() { lv_timer_handler(); }
