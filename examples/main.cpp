@@ -3,6 +3,7 @@
 #include <display.h>
 #include <lvgl.h>
 #include <lvgl_port_v9.h>
+#include <mx.h>
 
 #include "demo/app.h"
 

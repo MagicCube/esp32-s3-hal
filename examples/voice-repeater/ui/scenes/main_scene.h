@@ -5,6 +5,9 @@
 class AudioRecorder;
 
 class MainScene : public MXScene {
+ public:
+  ~MainScene();
+
  protected:
   MXObject* titleLabel = nullptr;
   MXObject* instructionLabel = nullptr;
@@ -15,7 +18,6 @@ class MainScene : public MXScene {
 
   void onInit() override;
   void onUpdate() override;
-  void onDispose() override;
 
   void init_pressed_style(lv_style_t* style, int32_t size);
   void handleSpeakButtonPressed();

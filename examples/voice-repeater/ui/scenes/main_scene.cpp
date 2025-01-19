@@ -67,14 +67,8 @@ void MainScene::init_pressed_style(lv_style_t* style, int32_t size) {
   lv_style_set_transform_height(style, size);
 }
 
-void MainScene::onUpdate() {
-  MXScene::onUpdate();
-  audioRecorder->update();
-}
-
-void MainScene::onDispose() {
-  MXScene::onDispose();
-
+MainScene::~MainScene() {
+  MXScene::~MXScene();
   delete titleLabel;
   titleLabel = nullptr;
   delete instructionLabel;
@@ -87,6 +81,11 @@ void MainScene::onDispose() {
   speakButton = nullptr;
   delete audioRecorder;
   audioRecorder = nullptr;
+}
+
+void MainScene::onUpdate() {
+  MXScene::onUpdate();
+  audioRecorder->update();
 }
 
 void MainScene::handleSpeakButtonPressed() {

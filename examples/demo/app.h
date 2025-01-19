@@ -1,10 +1,10 @@
 #pragma once
 
-#include "ui/scenes/main_scene.h"
+#include "ui/scenes/select_agent_scene.h"
 
-MainScene *mainScene;
+SelectAgentScene *selectAgentScene;
 
 inline void app_main() {
-  mainScene = new MainScene();
-  mainScene->show();
+  selectAgentScene = new SelectAgentScene();
+  selectAgentScene->show();
 }
