@@ -4,24 +4,9 @@ MXScene* MXScene::_activeScene = nullptr;
 
 MXScene::MXScene() : MXView() {}
 
-void MXScene::begin() {
-  if (isInitialized()) {
-    return;
-  }
-  onInit();
-  _initialized = true;
-  onLayout();
-}
-
-MXObject* MXScene::createRoot() {
-  auto root = new MXObject();
-  root->size_full()->pos(0, 0);
-  return root;
-}
-
 void MXScene::activate() {
   if (!isInitialized()) {
-    begin();
+    init();
   }
   if (isActive()) {
     return;

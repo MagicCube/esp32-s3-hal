@@ -21,6 +21,12 @@ class MXObject {
   inline MXObject(lv_obj_t* obj = nullptr) : lv_obj(obj) {
     if (obj == nullptr) {
       lv_obj = lv_obj_create(nullptr);
+      this->size_fit();
+      this->p(0);
+      this->border_none();
+      this->rounded(0);
+      this->bg_transparent();
+      this->scroll_bar_hidden();
     }
   }
 
