@@ -21,19 +21,22 @@ class MXObject {
   inline MXObject(lv_obj_t* obj = nullptr) : lv_obj(obj) {
     if (obj == nullptr) {
       lv_obj = lv_obj_create(nullptr);
-      this->size_fit();
-      this->p(0);
-      this->border_none();
-      this->rounded(0);
-      this->bg_transparent();
-      this->scroll_bar_hidden();
+      reset_to_default();
     }
+  }
+
+  inline MXObject* reset_to_default() {
+    p(0);
+    border_none();
+    rounded(0);
+    bg_transparent();
+    scroll_bar_hidden();
+    return this;
   }
 
   inline ~MXObject() {
     if (lv_obj) {
       lv_obj_delete_async(lv_obj);
-      lv_obj = nullptr;
     }
   }
 
@@ -51,11 +54,7 @@ class MXObject {
     } else {
       object->h_fit();
     }
-    object->p(0);
-    object->border_none();
-    object->rounded(0);
-    object->bg_transparent();
-    object->scroll_bar_hidden();
+    object->reset_to_default();
     return object;
   }
 
