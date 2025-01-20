@@ -38,8 +38,8 @@ void serial_loop() {
 
 void loop() {
   serial_loop();
+  app_loop();
   mx_loop();
-
   // Always keep `lv_loop()` at the end of the loop
   lv_loop();
 }

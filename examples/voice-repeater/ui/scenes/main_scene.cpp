@@ -70,17 +70,11 @@ void MainScene::init_pressed_style(lv_style_t* style, int32_t size) {
 MainScene::~MainScene() {
   MXScene::~MXScene();
   delete titleLabel;
-  titleLabel = nullptr;
   delete instructionLabel;
-  instructionLabel = nullptr;
   delete bigRing;
-  bigRing = nullptr;
   delete midRing;
-  midRing = nullptr;
   delete speakButton;
-  speakButton = nullptr;
   delete audioRecorder;
-  audioRecorder = nullptr;
 }
 
 void MainScene::onUpdate() {

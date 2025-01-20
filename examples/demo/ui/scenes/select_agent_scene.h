@@ -2,17 +2,29 @@
 
 #include <mx.h>
 
-LV_IMAGE_DECLARE(img_call_agent_scene);
-LV_IMAGE_DECLARE(img_home_screen);
-LV_IMAGE_DECLARE(img_select_agent_scene);
+#include "../views/status_bar.h"
 
 class SelectAgentScene : public MXScene {
- protected:
-  inline void onInit() override {
+ public:
+  void onInit() override {
     MXScene::onInit();
-    root()->bg(rgb(0x040920));
 
-    MXObject *time = root()->add_label("12:18");
-    time->align(LV_ALIGN_TOP_LEFT, 16, 12);
+    StatusBar* statusBar = new StatusBar();
+    statusBar->init();
+    addSubview(statusBar);
+
+    MXView* container = new MXView();
+    container->init();
+    container->root()->size(240, 280)->scroll_bar_auto();
+    addSubview(container);
+
+    for (int i = 0; i < 3; i++) {
+      MXView* view = new MXView();
+      view->init();
+      view->root()->bg(rgb(255, 0, 0));
+      view->root()->size(196, 256);
+      view->root()->center_x()->y(35 + i * 256 + i * 10);
+      container->addSubview(view);
+    }
   }
 };
