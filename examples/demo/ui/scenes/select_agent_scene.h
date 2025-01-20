@@ -15,7 +15,7 @@ class SelectAgentScene : public MXScene {
 
     MXView* container = new MXView();
     container->init();
-    container->root()->size(240, 280)->scroll_bar_auto();
+    container->root()->size_full()->scroll_bar_auto();
     addSubview(container);
 
     for (int i = 0; i < 3; i++) {
