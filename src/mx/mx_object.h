@@ -37,12 +37,19 @@ class MXObject {
     MXObject* object = new MXObject(lv_object);
     if (width >= 0) {
       object->w(width);
+    } else {
+      object->w_fit();
     }
     if (height >= 0) {
       object->h(height);
+    } else {
+      object->h_fit();
     }
-    object->bg_transparent();
+    object->p(0);
     object->border_none();
+    object->rounded(0);
+    object->bg_transparent();
+    object->scroll_bar_hidden();
     return object;
   }
 
@@ -97,6 +104,34 @@ class MXObject {
 
   inline lv_obj_t* lv_object() { return lv_obj; }
 
+  // Flex
+  MXObject* flex(lv_flex_flow_t flow,
+                 lv_flex_align_t justify_content = LV_FLEX_ALIGN_START,
+                 lv_flex_align_t align_items = LV_FLEX_ALIGN_START,
+                 lv_flex_align_t align_content = LV_FLEX_ALIGN_START);
+
+  inline MXObject* flex_row(
+      lv_flex_align_t justify_content = LV_FLEX_ALIGN_START,
+      lv_flex_align_t align_items = LV_FLEX_ALIGN_START,
+      lv_flex_align_t align_content = LV_FLEX_ALIGN_START) {
+    return flex(LV_FLEX_FLOW_ROW, justify_content, align_items, align_content);
+  }
+
+  inline MXObject* flex_col(
+      lv_flex_align_t justify_content = LV_FLEX_ALIGN_START,
+      lv_flex_align_t align_items = LV_FLEX_ALIGN_START,
+      lv_flex_align_t align_content = LV_FLEX_ALIGN_START) {
+    return flex(LV_FLEX_FLOW_COLUMN, justify_content, align_items,
+                align_content);
+  }
+
+  MXObject* flex_grow();
+
+  MXObject* gap(const lv_coord_t gap_x, const lv_coord_t gap_y);
+  inline MXObject* gap(const lv_coord_t value) { return gap(value, value); }
+  inline MXObject* gap_x(const lv_coord_t x) { return gap(x, 0); }
+  inline MXObject* gap_y(const lv_coord_t y) { return gap(0, y); }
+
   // Size
   int32_t w();
   MXObject* w(const int32_t width);
@@ -123,6 +158,9 @@ class MXObject {
   int32_t y();
   MXObject* y(const int32_t y);
   MXObject* pos(const int32_t x, const int32_t y);
+
+  MXObject* move_foreground();
+  MXObject* move_background();
 
   // Padding
   MXObject* p(const lv_coord_t padding);

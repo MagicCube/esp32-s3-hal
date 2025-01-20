@@ -3,6 +3,27 @@
 #include "mx_color.h"
 #include "mx_scene.h"
 
+MXObject* MXObject::flex(lv_flex_flow_t flow, lv_flex_align_t justify_content,
+                         lv_flex_align_t align_items,
+                         lv_flex_align_t align_content) {
+  lv_obj_set_flex_flow(lv_obj, flow);
+  lv_obj_set_flex_align(lv_obj, justify_content, align_content, align_items);
+  lv_obj_set_style_pad_column(lv_obj, 0, LV_PART_MAIN);
+  lv_obj_set_style_pad_row(lv_obj, 0, LV_PART_MAIN);
+  return this;
+}
+
+MXObject* MXObject::flex_grow() {
+  lv_obj_set_flex_grow(lv_obj, 1);
+  return this;
+}
+
+MXObject* MXObject::gap(const lv_coord_t gap_x, const lv_coord_t gap_y) {
+  lv_obj_set_style_pad_column(lv_obj, gap_x, LV_PART_MAIN);
+  lv_obj_set_style_pad_row(lv_obj, gap_y, LV_PART_MAIN);
+  return this;
+}
+
 int32_t MXObject::w() { return lv_obj_get_width(lv_obj); }
 
 MXObject* MXObject::w(const int32_t width) {
@@ -83,6 +104,16 @@ MXObject* MXObject::y(const int32_t y) {
 
 MXObject* MXObject::pos(const int32_t x, const int32_t y) {
   lv_obj_set_pos(lv_obj, x, y);
+  return this;
+}
+
+MXObject* MXObject::move_foreground() {
+  lv_obj_move_foreground(lv_obj);
+  return this;
+}
+
+MXObject* MXObject::move_background() {
+  lv_obj_move_background(lv_obj);
   return this;
 }
 
@@ -176,6 +207,9 @@ MXObject* MXObject::text_format(const char* format, ...) {
 
 MXObject* MXObject::text(const MXFontSize size) {
   switch (size) {
+    case MX_FONT_SIZE_12:
+      font(&lv_font_montserrat_12);
+      break;
     case MX_FONT_SIZE_14:
       font(&lv_font_montserrat_14);
       break;
