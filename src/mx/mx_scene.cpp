@@ -4,6 +4,13 @@ MXScene* MXScene::_activeScene = nullptr;
 
 MXScene::MXScene() : MXView() {}
 
+MXObject* MXScene::createRoot() {
+  auto root = new MXObject(lv_obj_create(nullptr));
+  root->reset_to_default();
+  root->size_full();
+  return root;
+}
+
 void MXScene::activate() {
   if (!isInitialized()) {
     init();

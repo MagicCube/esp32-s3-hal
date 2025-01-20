@@ -21,6 +21,7 @@ class MXScene : public MXView {
             uint32_t duration = 200, uint32_t delay = 0);
 
  protected:
+  virtual MXObject* createRoot() override;
   virtual inline void onActivating() {};
   virtual inline void onDeactivating() {};
   virtual inline void onShown() {};
