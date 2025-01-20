@@ -3,14 +3,14 @@
 #include <lvgl.h>
 
 #include "mx_object.h"
+#include "mx_view.h"
 
-class MXScene {
+class MXScene : public MXView {
  public:
-  MXScene() {}
+  MXScene();
 
   inline static MXScene* activeScene() { return _activeScene; }
 
-  inline bool isInitialized() const { return _initialized; }
   inline bool isActive() const { return _activeScene == this; }
   inline MXObject* root() const { return _root; }
   inline int32_t width() const { return lv_obj_get_width(_root->lv_object()); }
@@ -50,7 +50,6 @@ class MXScene {
   virtual inline void onUpdate() {};
 
  private:
-  bool _initialized = false;
   MXObject* _root;
 
   static MXScene* _activeScene;

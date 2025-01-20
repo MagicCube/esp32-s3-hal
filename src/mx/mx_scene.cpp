@@ -2,6 +2,8 @@
 
 MXScene* MXScene::_activeScene = nullptr;
 
+MXScene::MXScene() : MXView() {}
+
 void MXScene::begin() {
   if (isInitialized()) {
     return;
