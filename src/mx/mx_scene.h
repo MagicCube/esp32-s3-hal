@@ -24,7 +24,7 @@ class MXScene : public MXView {
   virtual MXObject* createRoot() override;
   virtual inline void onActivating() {};
   virtual inline void onDeactivating() {};
-  virtual inline void onShown() {};
+  virtual inline void onShow() {};
 
  private:
   static MXScene* _activeScene;

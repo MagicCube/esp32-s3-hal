@@ -11,11 +11,11 @@ void hal_setup() {
   Serial.begin(115200);
   Display.begin();
   Audio.begin();
-  Audio.playSystemSound(SYSTEM_SOUND_STARTUP);
+  // Audio.playSystemSound(SYSTEM_SOUND_STARTUP);
 #ifdef DISPLAY_ST77916
   Display.rotate(180);
 #endif
-  delay(500);
+  // delay(500);
 }
 
 void setup() {

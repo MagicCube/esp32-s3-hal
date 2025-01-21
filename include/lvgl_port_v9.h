@@ -8,7 +8,7 @@
 #if DISPLAY_TOUCH_ENABLED == 1
 #include "touch_lcd_display.h"
 #endif
-#define DRAW_BUFFER_HEIGHT DISPLAY_RES_HEIGHT / 2
+#define DRAW_BUFFER_HEIGHT DISPLAY_RES_HEIGHT
 #define DRAW_BUFFER_SIZE \
   (DISPLAY_RES_WIDTH * (DRAW_BUFFER_HEIGHT) * (LV_COLOR_DEPTH / 8))
 uint32_t *draw_buffer =

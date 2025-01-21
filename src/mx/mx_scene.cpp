@@ -46,5 +46,5 @@ void MXScene::show(lv_scr_load_anim_t animation, uint32_t duration,
   } else {
     lv_screen_load_anim(root()->lv_object(), animation, duration, delay, false);
   }
-  onShown();
+  onShow();
 }

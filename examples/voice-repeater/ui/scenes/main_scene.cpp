@@ -51,9 +51,9 @@ void MainScene::onInit() {
           ->center()
           ->bg(BUTTON_BG_COLOR)
           ->rounded_full()
-          ->onClick([](MXEvent* e) { Serial.println("Clicked"); })
-          ->onPressed([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
-          ->onReleased(
+          ->on_click([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
+          ->on_pressed([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
+          ->on_released(
               [this](MXEvent* e) { this->handleSpeakButtonReleased(); });
   speakButton->add_image(&img_microphone)->center(0)->clickable(false);
 

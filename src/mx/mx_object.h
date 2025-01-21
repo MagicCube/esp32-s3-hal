@@ -18,96 +18,24 @@ class MXScene;
 
 class MXObject {
  public:
-  inline MXObject(lv_obj_t* obj = nullptr) : lv_obj(obj) {
-    if (obj == nullptr) {
-      lv_obj = lv_obj_create(nullptr);
-      reset_to_default();
-    }
-  }
+  MXObject(lv_obj_t* obj = nullptr);
 
-  inline MXObject* reset_to_default() {
-    p(0);
-    border_none();
-    rounded(0);
-    bg_transparent();
-    scroll_bar_hidden();
-    return this;
-  }
+  MXObject* reset_to_default();
 
-  inline ~MXObject() {
-    if (lv_obj) {
-      lv_obj_delete_async(lv_obj);
-    }
-  }
-
-  inline MXObject* add_object(const int32_t width = -1,
-                              const int32_t height = -1) {
-    lv_obj_t* lv_object = lv_obj_create(lv_obj);
-    MXObject* object = new MXObject(lv_object);
-    if (width >= 0) {
-      object->w(width);
-    } else {
-      object->w_fit();
-    }
-    if (height >= 0) {
-      object->h(height);
-    } else {
-      object->h_fit();
-    }
-    object->reset_to_default();
-    return object;
-  }
-
-  inline MXObject* add_label(const char* text = nullptr,
-                             const MXFontSize fontSize = MX_FONT_SIZE_DEFAULT) {
-    lv_obj_t* lv_label = lv_label_create(lv_obj);
-    MXObject* label = new MXObject(lv_label);
-    if (text != nullptr) {
-      label->text(text);
-    }
-    label->text(fontSize);
-    return label;
-  }
-
-  inline MXObject* add_button(
-      const char* text = nullptr,
-      const MXFontSize fontSize = MX_FONT_SIZE_DEFAULT) {
-    lv_obj_t* lv_button = lv_btn_create(lv_obj);
-    MXObject* button = new MXObject(lv_button);
-    if (text != nullptr) {
-      lv_obj_t* lv_label = lv_label_create(lv_button);
-      lv_obj_align(lv_label, LV_ALIGN_CENTER, 0, 0);
-      button->text(text);
-      button->text(fontSize);
-    }
-    return button;
-  }
-
-  inline MXObject* add_image(const void* src = nullptr) {
-    lv_obj_t* lv_image = lv_img_create(lv_obj);
-    MXObject* image = new MXObject(lv_image);
-    if (src != nullptr) {
-      image->src(src);
-    }
-    return image;
-  }
-
-  inline MXObject* src(const void* src) {
-    lv_img_set_src(lv_obj, src);
-    return this;
-  }
-
-  inline MXObject* scale(const float scale) {
-    lv_image_set_scale(lv_obj, 255 * scale);
-    return this;
-  }
-
-  inline MXObject* rotate(const float degrees) {
-    lv_img_set_angle(lv_obj, degrees * 10);
-    return this;
-  }
+  ~MXObject();
 
   inline lv_obj_t* lv_object() { return lv_obj; }
+
+  // Add Objects
+  MXObject* add_object(const int32_t width = -1, const int32_t height = -1);
+
+  MXObject* add_label(const char* text = nullptr,
+                      const MXFontSize fontSize = MX_FONT_SIZE_DEFAULT);
+
+  MXObject* add_button(const char* text = nullptr,
+                       const MXFontSize fontSize = MX_FONT_SIZE_DEFAULT);
+
+  MXObject* add_image(const void* src = nullptr);
 
   // Flex
   MXObject* flex(lv_flex_flow_t flow,
@@ -271,12 +199,16 @@ class MXObject {
   MXObject* add_style(const lv_style_t* style);
   MXObject* remove_style(const lv_style_t* style);
 
+  // Flag
+  MXObject* add_flag(const lv_obj_flag_t flag);
+  MXObject* remove_flag(const lv_obj_flag_t flag);
+
   // Clickable
   MXObject* clickable(bool value);
 
   // Scrollable
-  MXObject* scroll_snap(const lv_scroll_snap_t snapX,
-                        const lv_scroll_snap_t snapY);
+  int32_t scroll_x();
+  int32_t scroll_y();
   MXObject* scrollable(bool value);
   MXObject* scroll_bar(lv_scrollbar_mode_t mode);
   inline MXObject* scroll_bar_hidden() {
@@ -289,18 +221,38 @@ class MXObject {
     return scroll_bar(LV_SCROLLBAR_MODE_ACTIVE);
   }
   inline MXObject* scroll_bar_on() { return scroll_bar(LV_SCROLLBAR_MODE_ON); }
+  MXObject* scroll_into_view(bool animate = true);
+  MXObject* scroll_snap_x(const lv_scroll_snap_t snap_x);
+  MXObject* scroll_snap_y(const lv_scroll_snap_t snap_y);
+  MXObject* scroll_snap(const lv_scroll_snap_t snap_x,
+                        const lv_scroll_snap_t snap_y);
 
   // Events
   MXObject* on(const lv_event_code_t event, const mx_event_callback_t callback);
-  inline MXObject* onClick(const mx_event_callback_t callback) {
+  inline MXObject* on_click(const mx_event_callback_t callback) {
     return on(LV_EVENT_CLICKED, callback);
   }
-  inline MXObject* onPressed(const mx_event_callback_t callback) {
+  inline MXObject* on_pressed(const mx_event_callback_t callback) {
     return on(LV_EVENT_PRESSED, callback);
   }
-  inline MXObject* onReleased(const mx_event_callback_t callback) {
+  inline MXObject* on_released(const mx_event_callback_t callback) {
     return on(LV_EVENT_RELEASED, callback);
   }
+  inline MXObject* on_scroll(const mx_event_callback_t callback) {
+    return on(LV_EVENT_SCROLL, callback);
+  }
+  inline MXObject* on_scroll_begin(const mx_event_callback_t callback) {
+    return on(LV_EVENT_SCROLL_BEGIN, callback);
+  }
+  inline MXObject* on_scroll_end(const mx_event_callback_t callback) {
+    return on(LV_EVENT_SCROLL_END, callback);
+  }
+
+  // Image
+  MXObject* src(const void* src);
+  MXObject* image_pivot(const lv_coord_t x, const lv_coord_t y);
+  MXObject* image_scale(const float scale);
+  MXObject* image_rotate(const float degrees);
 
  protected:
   lv_obj_t* lv_obj;
