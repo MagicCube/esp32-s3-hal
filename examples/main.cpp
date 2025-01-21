@@ -26,7 +26,7 @@ void setup() {
 
 time_t last_serial_output = 0;
 void serial_loop() {
-  if (millis() - last_serial_output > 5 * 1000) {
+  if (millis() - last_serial_output > 10 * 1000) {
     // Serial.print(".");
     // Print free memory
     Serial.print("Free memory: ");
