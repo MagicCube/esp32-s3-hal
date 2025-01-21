@@ -24,9 +24,9 @@ class AgentCard : public MXView {
     }
   }
 
-  void setScale(float scale) {
+  void translateY(float y) {
     lv_obj_t* lv_card = root()->lv_object();
-    lv_obj_set_style_transform_scale(lv_card, 255 * scale, LV_PART_MAIN);
+    lv_obj_set_style_translate_y(lv_card, y, LV_PART_MAIN);
   }
 
  protected:

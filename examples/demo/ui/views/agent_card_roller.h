@@ -20,14 +20,14 @@ class AgentCardRoller : public MXView {
  protected:
   AgentCard* cards[3] = {nullptr, nullptr, nullptr};
   MXObject* bottom;
-  ScaleMap* scaleMap0;
   ScaleMap* opacityScaleMap0;
-  ScaleMap* scaleMap1_0;
   ScaleMap* opacityScaleMap1_0;
-  ScaleMap* scaleMap1_2;
   ScaleMap* opacityScaleMap1_2;
-  ScaleMap* scaleMap2;
   ScaleMap* opacityScaleMap2;
+  ScaleMap* translateYScaleMap0;
+  ScaleMap* translateYScaleMap1_0;
+  ScaleMap* translateYScaleMap1_2;
+  ScaleMap* translateYScaleMap2;
 
   void onInit() override {
     MXView::onInit();
@@ -38,25 +38,30 @@ class AgentCardRoller : public MXView {
         ->scroll_bar_hidden()
         ->scroll_snap_x(LV_SCROLL_SNAP_CENTER)
         ->add_flag(LV_OBJ_FLAG_SCROLL_ONE)
+        ->remove_flag(LV_OBJ_FLAG_SCROLL_ELASTIC)
         ->on_scroll([this](MXEvent* e) { handleScroll(); })
         ->on_scroll_end([this](MXEvent* e) { handleScrollEnd(); });
 
     for (int i = 0; i < 3; i++) {
       cards[i] = new AgentCard();
       cards[i]->init();
-      cards[i]->root()->y(36)->x(22 + 184 * i);
+      // cards[i]->root()->y(36)->x(22 + 184 * i);
+      cards[i]->root()->y(36)->x(200 * i);
       cards[i]->setIndex(i);
       addSubview(cards[i]);
     }
 
-    scaleMap0 = new ScaleMap(-4, 192, 1.0, 0.82);
-    opacityScaleMap0 = new ScaleMap(-4, 192, 1, 0.4);
-    scaleMap1_0 = new ScaleMap(-4, 192, 0.82, 1.0);
-    opacityScaleMap1_0 = new ScaleMap(-4, 192, 0.4, 1);
-    scaleMap1_2 = new ScaleMap(192, 388, 1.0, 0.82);
-    opacityScaleMap1_2 = new ScaleMap(192, 388, 1, 0.4);
-    scaleMap2 = new ScaleMap(192, 388, 0.82, 1.0);
-    opacityScaleMap2 = new ScaleMap(192, 388, 0.4, 1);
+    const float opacity_min = 0.4;
+    opacityScaleMap0 = new ScaleMap(-4, 192, 1, opacity_min);
+    opacityScaleMap1_0 = new ScaleMap(-4, 192, opacity_min, 1);
+    opacityScaleMap1_2 = new ScaleMap(192, 388, 1, opacity_min);
+    opacityScaleMap2 = new ScaleMap(192, 388, opacity_min, 1);
+
+    const float translate_y_max = 24;
+    translateYScaleMap0 = new ScaleMap(-4, 192, 0, translate_y_max);
+    translateYScaleMap1_0 = new ScaleMap(-4, 192, translate_y_max, 0);
+    translateYScaleMap1_2 = new ScaleMap(192, 388, 0, translate_y_max);
+    translateYScaleMap2 = new ScaleMap(192, 388, translate_y_max, 0);
 
     bottom = root()
                  ->add_image(&img_agent_card_bottom)
@@ -72,15 +77,15 @@ class AgentCardRoller : public MXView {
     if (cards[0] == nullptr) return;
 
     int32_t scrollX = root()->scroll_x();
-    cards[0]->setScale(scaleMap0->scale(scrollX));
+    cards[0]->translateY(translateYScaleMap0->scale(scrollX));
     cards[0]->root()->opacity(opacityScaleMap0->scale(scrollX));
-    cards[2]->setScale(scaleMap2->scale(scrollX));
+    cards[2]->translateY(translateYScaleMap2->scale(scrollX));
     cards[2]->root()->opacity(opacityScaleMap2->scale(scrollX));
     if (scrollX <= 192) {
-      cards[1]->setScale(scaleMap1_0->scale(scrollX));
+      cards[1]->translateY(translateYScaleMap1_0->scale(scrollX));
       cards[1]->root()->opacity(opacityScaleMap1_0->scale(scrollX));
     } else {
-      cards[1]->setScale(scaleMap1_2->scale(scrollX));
+      cards[1]->translateY(translateYScaleMap1_2->scale(scrollX));
       cards[1]->root()->opacity(opacityScaleMap1_2->scale(scrollX));
     }
   }
