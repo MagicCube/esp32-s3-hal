@@ -18,9 +18,9 @@ class AgentCardRoller : public MXView {
     delete bottom;
   }
 
-  void next() { cards[2]->root()->scroll_into_view(); }
+  void next() { cards[0]->root()->scroll_into_view(); }
 
-  void prev() { cards[0]->root()->scroll_into_view(); }
+  void prev() { cards[2]->root()->scroll_into_view(); }
 
  protected:
   MXObject* bottom;
