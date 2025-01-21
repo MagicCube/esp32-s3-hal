@@ -11,6 +11,6 @@ typedef std::function<void(MXEvent* e)> mx_event_callback_t;
 
 struct MXEvent {
   lv_event_code_t code;
-  MXObject* target;
+  void* target;
   mx_event_callback_t callback;
 };
