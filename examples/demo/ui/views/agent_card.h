@@ -27,6 +27,7 @@ class AgentCard : public MXView {
   void translateY(float y) {
     lv_obj_t* lv_card = root()->lv_object();
     lv_obj_set_style_translate_y(lv_card, y, LV_PART_MAIN);
+    root()->h(img_agent_card_bg.header.h - y);
   }
 
  protected:

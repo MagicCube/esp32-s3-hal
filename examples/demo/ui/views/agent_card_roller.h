@@ -38,14 +38,12 @@ class AgentCardRoller : public MXView {
         ->scroll_bar_hidden()
         ->scroll_snap_x(LV_SCROLL_SNAP_CENTER)
         ->add_flag(LV_OBJ_FLAG_SCROLL_ONE)
-        ->remove_flag(LV_OBJ_FLAG_SCROLL_ELASTIC)
         ->on_scroll([this](MXEvent* e) { handleScroll(); })
         ->on_scroll_end([this](MXEvent* e) { handleScrollEnd(); });
 
     for (int i = 0; i < 3; i++) {
       cards[i] = new AgentCard();
       cards[i]->init();
-      // cards[i]->root()->y(36)->x(22 + 184 * i);
       cards[i]->root()->y(36)->x(200 * i);
       cards[i]->setIndex(i);
       addSubview(cards[i]);
