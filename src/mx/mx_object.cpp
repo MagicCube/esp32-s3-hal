@@ -405,7 +405,6 @@ MXObject* MXObject::clickable(bool value = true) {
 }
 
 int32_t MXObject::scroll_x() { return lv_obj_get_scroll_x(lv_obj); }
-
 int32_t MXObject::scroll_y() { return lv_obj_get_scroll_y(lv_obj); }
 
 MXObject* MXObject::scrollable(bool value = true) {
@@ -414,6 +413,16 @@ MXObject* MXObject::scrollable(bool value = true) {
   } else {
     remove_flag(LV_OBJ_FLAG_SCROLLABLE);
   }
+  return this;
+}
+
+MXObject* MXObject::scroll_to_x(const int32_t x, bool animate) {
+  lv_obj_scroll_to_x(lv_obj, x, animate ? LV_ANIM_ON : LV_ANIM_OFF);
+  return this;
+}
+
+MXObject* MXObject::scroll_to_y(const int32_t y, bool animate) {
+  lv_obj_scroll_to_y(lv_obj, y, animate ? LV_ANIM_ON : LV_ANIM_OFF);
   return this;
 }
 

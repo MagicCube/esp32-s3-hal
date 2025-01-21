@@ -210,6 +210,8 @@ class MXObject {
   int32_t scroll_x();
   int32_t scroll_y();
   MXObject* scrollable(bool value);
+  MXObject* scroll_to_x(const int32_t x, bool animate = true);
+  MXObject* scroll_to_y(const int32_t y, bool animate = true);
   MXObject* scroll_bar(lv_scrollbar_mode_t mode);
   inline MXObject* scroll_bar_hidden() {
     return scroll_bar(LV_SCROLLBAR_MODE_OFF);
