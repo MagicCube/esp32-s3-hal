@@ -29,6 +29,9 @@ void MXView::update() {
     init();
   }
   onUpdate();
+  for (auto subview : _subviews) {
+    subview->update();
+  }
 }
 
 void MXView::addSubview(MXView* subview) {
