@@ -18,9 +18,9 @@ class AgentCardRoller : public MXView {
     delete bottom;
   }
 
-  void next() { cards[2]->root()->scroll_into_view(true); }
+  void next() { cards[2]->root()->scroll_into_view(); }
 
-  void prev() { cards[0]->root()->scroll_into_view(true); }
+  void prev() { cards[0]->root()->scroll_into_view(); }
 
  protected:
   MXObject* bottom;
@@ -130,15 +130,15 @@ class AgentCardRoller : public MXView {
     int32_t scrollX = root()->scroll_x();
     AgentCard* temp[3] = {cards[0], cards[1], cards[2]};
     if (scrollX == -26) {
+      // =>
+      cards[0] = temp[2];
       cards[1] = temp[0];
       cards[2] = temp[1];
-      cards[0] = temp[2];
-      updateCards();
-    } else if (scrollX == 174) {
       updateCards();
     } else if (scrollX == 374) {
-      cards[1] = temp[2];
+      // <=
       cards[0] = temp[1];
+      cards[1] = temp[2];
       cards[2] = temp[0];
       updateCards();
     }
