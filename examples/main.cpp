@@ -1,11 +1,12 @@
 #include <Arduino.h>
+#include <SPIFFS.h>
 #include <audio.h>
 #include <display.h>
 #include <lvgl.h>
 #include <lvgl_port_v9.h>
 #include <mx.h>
 
-#include "demo/app.h"
+#include "voice-repeater/app.h"
 
 void hal_setup() {
   Serial.begin(115200);
@@ -18,8 +19,16 @@ void hal_setup() {
   // delay(500);
 }
 
+void spiffs_setup() {
+  if (!SPIFFS.begin(true)) {
+    Serial.println("An Error has occurred while mounting SPIFFS");
+    return;
+  }
+}
+
 void setup() {
   hal_setup();
+  spiffs_setup();
   lv_setup();
   app_main();
 }
