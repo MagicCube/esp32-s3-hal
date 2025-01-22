@@ -51,7 +51,6 @@ void MainScene::onInit() {
           ->center()
           ->bg(BUTTON_BG_COLOR)
           ->rounded_full()
-          ->on_click([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
           ->on_pressed([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
           ->on_released(
               [this](MXEvent* e) { this->handleSpeakButtonReleased(); });
