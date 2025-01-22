@@ -16,7 +16,6 @@ void hal_setup() {
 #ifdef DISPLAY_ST77916
   Display.rotate(180);
 #endif
-  // delay(500);
 }
 
 void spiffs_setup() {
@@ -30,6 +29,8 @@ void setup() {
   hal_setup();
   spiffs_setup();
   lv_setup();
+  mx_preload();
+  app_preload();
   app_main();
 }
 

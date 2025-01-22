@@ -5,6 +5,9 @@
 
 SelectAgentScene *selectAgentScene;
 StatusBar *statusBar;
+
+inline void app_preload() {}
+
 inline void app_main() {
   selectAgentScene = new SelectAgentScene();
   selectAgentScene->show();

@@ -1,7 +1,6 @@
 #include "main_scene.h"
 
 #include <audio.h>
-#include <fonts/fonts.h>
 
 #include "../../core/audio_recorder.h"
 

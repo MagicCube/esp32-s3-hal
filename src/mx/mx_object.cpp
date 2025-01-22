@@ -1,6 +1,5 @@
 #include "mx_object.h"
 
-#include "fonts/fonts.h"
 #include "mx_color.h"
 #include "mx_scene.h"
 

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <Arduino.h>
+#include <lvgl.h>
+
 enum MXFontSize {
   MX_FONT_SIZE_14 = 14,
   MX_FONT_SIZE_16 = 16,
@@ -19,3 +22,24 @@ enum MXFontSize {
 #define MX_FONT_SIZE_3XL MX_FONT_SIZE_30
 #define MX_FONT_SIZE_4XL MX_FONT_SIZE_36
 #define MX_FONT_SIZE_5XL MX_FONT_SIZE_48
+
+struct MXFontData {
+  uint8_t *data = nullptr;
+  size_t size = 0;
+};
+
+extern MXFontData mx_font_data_pingfang_medium;
+extern MXFontData mx_font_data_font_awesome;
+
+extern const lv_font_t *lv_font_pingfang_medium_14;
+extern const lv_font_t *lv_font_pingfang_medium_16;
+extern const lv_font_t *lv_font_pingfang_medium_18;
+extern const lv_font_t *lv_font_pingfang_medium_20;
+extern const lv_font_t *lv_font_pingfang_medium_24;
+extern const lv_font_t *lv_font_pingfang_medium_30;
+extern const lv_font_t *lv_font_pingfang_medium_36;
+extern const lv_font_t *lv_font_pingfang_medium_48;
+
+void mx_preload_fonts();
+
+lv_font_t *make_icon_font(size_t size);

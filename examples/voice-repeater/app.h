@@ -4,6 +4,8 @@
 
 MainScene *mainScene;
 
+inline void app_preload() {}
+
 inline void app_main() {
   mainScene = new MainScene();
   mainScene->show();

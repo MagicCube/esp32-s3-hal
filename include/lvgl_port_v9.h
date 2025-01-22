@@ -4,7 +4,6 @@
 #include <lvgl.h>
 
 #include "display_conf.h"
-#include "fonts/fonts.h"
 #if DISPLAY_TOUCH_ENABLED == 1
 #include "touch_lcd_display.h"
 #endif
@@ -69,8 +68,6 @@ inline void lv_setup_theme() {
 inline void lv_setup() {
   lv_init();
   lv_tick_set_cb([]() { return (uint32_t)(esp_timer_get_time() / 1000); });
-
-  setup_fonts();
 
   lv_setup_display();
 #if DISPLAY_TOUCH_ENABLED == 1

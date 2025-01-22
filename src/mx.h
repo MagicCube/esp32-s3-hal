@@ -7,6 +7,8 @@
 #include "mx/mx_scene.h"
 #include "mx/mx_view.h"
 
+inline void mx_preload() { mx_preload_fonts(); }
+
 inline void mx_loop() {
   if (MXScene::activeScene()) {
     MXScene::activeScene()->update();
