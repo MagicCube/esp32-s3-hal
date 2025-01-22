@@ -10,7 +10,7 @@ class StatusBar : public MXView {
     root()
         ->flex_row(LV_FLEX_ALIGN_SPACE_BETWEEN, LV_FLEX_ALIGN_CENTER)
         ->w_full()
-        ->h(15)
+        ->h(17)
         ->pos(0, 0)
         ->p_x(24)
         ->y(12);
@@ -18,8 +18,10 @@ class StatusBar : public MXView {
     timeLabel = root()->add_label("12:18");
 
     right = root()->add_object()->flex_row()->gap(8);
-    wifiIndicator = right->add_label(LV_SYMBOL_WIFI);
-    batteryIndicator = right->add_label(LV_SYMBOL_BATTERY_FULL);
+    wifiIndicator =
+        right->add_label(LV_SYMBOL_WIFI)->font(&lv_font_montserrat_16);
+    batteryIndicator =
+        right->add_label(LV_SYMBOL_BATTERY_FULL)->font(&lv_font_montserrat_16);
   }
 
   ~StatusBar() {
