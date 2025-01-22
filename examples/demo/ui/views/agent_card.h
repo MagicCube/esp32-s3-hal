@@ -4,6 +4,9 @@
 
 LV_IMAGE_DECLARE(img_agent_card_bg);
 
+#define AGENT_CARD_W 188
+#define AGENT_CARD_H 224
+
 class AgentCard : public MXView {
  public:
   ~AgentCard() { delete background; }
@@ -24,7 +27,7 @@ class AgentCard : public MXView {
   void translateY(float y) {
     lv_obj_t* lv_card = root()->lv_object();
     lv_obj_set_style_translate_y(lv_card, y, LV_PART_MAIN);
-    root()->h(img_agent_card_bg.header.h - y);
+    root()->h(AGENT_CARD_H - y);
   }
 
  protected:
@@ -36,15 +39,13 @@ class AgentCard : public MXView {
     MXView::onInit();
 
     root()
-        ->size(img_agent_card_bg.header.w, img_agent_card_bg.header.h)
-        ->rounded(img_agent_card_bg.header.w / 10)
+        ->size(AGENT_CARD_W, AGENT_CARD_H)
+        ->rounded(AGENT_CARD_W / 10)
         ->clip_content();
 
     lv_obj_t* lv_card = root()->lv_object();
-    lv_obj_set_style_transform_pivot_x(lv_card, img_agent_card_bg.header.w / 2,
-                                       LV_PART_MAIN);
-    lv_obj_set_style_transform_pivot_y(lv_card, img_agent_card_bg.header.h / 2,
-                                       LV_PART_MAIN);
+    lv_obj_set_style_transform_pivot_x(lv_card, AGENT_CARD_W / 2, LV_PART_MAIN);
+    lv_obj_set_style_transform_pivot_y(lv_card, AGENT_CARD_H / 2, LV_PART_MAIN);
 
     background = root()->add_image(&img_agent_card_bg);
     nameLabel = root()
