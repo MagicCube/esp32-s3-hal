@@ -1,7 +1,6 @@
 #pragma once
 
 enum MXFontSize {
-  MX_FONT_SIZE_12 = 12,
   MX_FONT_SIZE_14 = 14,
   MX_FONT_SIZE_16 = 16,
   MX_FONT_SIZE_18 = 18,
@@ -12,7 +11,6 @@ enum MXFontSize {
   MX_FONT_SIZE_48 = 48,
 };
 
-#define MX_FONT_SIZE_XS MX_FONT_SIZE_12
 #define MX_FONT_SIZE_SM MX_FONT_SIZE_14
 #define MX_FONT_SIZE_DEFAULT MX_FONT_SIZE_16
 #define MX_FONT_SIZE_LG MX_FONT_SIZE_18

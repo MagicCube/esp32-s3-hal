@@ -1,5 +1,6 @@
 #include "mx_object.h"
 
+#include "fonts/fonts.h"
 #include "mx_color.h"
 #include "mx_scene.h"
 
@@ -277,32 +278,32 @@ MXObject* MXObject::text_format(const char* format, ...) {
 
 MXObject* MXObject::text(const MXFontSize size) {
   switch (size) {
-    case MX_FONT_SIZE_12:
-      font(&lv_font_montserrat_12);
-      break;
     case MX_FONT_SIZE_14:
-      font(&lv_font_montserrat_14);
+      font(lv_font_pingfang_medium_14);
       break;
     case MX_FONT_SIZE_16:
-      font(&lv_font_montserrat_16);
+      font(lv_font_pingfang_medium_16);
       break;
     case MX_FONT_SIZE_18:
-      font(&lv_font_montserrat_18);
+      font(lv_font_pingfang_medium_18);
       break;
     case MX_FONT_SIZE_20:
-      font(&lv_font_montserrat_20);
+      font(lv_font_pingfang_medium_20);
       break;
     case MX_FONT_SIZE_24:
-      font(&lv_font_montserrat_24);
+      font(lv_font_pingfang_medium_24);
       break;
     case MX_FONT_SIZE_30:
-      font(&lv_font_montserrat_30);
+      font(lv_font_pingfang_medium_30);
       break;
     case MX_FONT_SIZE_36:
-      font(&lv_font_montserrat_36);
+      font(lv_font_pingfang_medium_36);
       break;
     case MX_FONT_SIZE_48:
-      font(&lv_font_montserrat_48);
+      font(lv_font_pingfang_medium_48);
+      break;
+    default:
+      font(lv_font_pingfang_medium_16);
       break;
   }
   return this;
