@@ -26,9 +26,14 @@ enum MXFontSize {
 struct MXFontData {
   uint8_t *data = nullptr;
   size_t size = 0;
+
+  ~MXFontData() {
+    if (data) {
+      delete[] data;
+    }
+  }
 };
 
-extern MXFontData mx_font_data_pingfang_medium;
 extern MXFontData mx_font_data_font_awesome;
 
 extern const lv_font_t *lv_font_pingfang_medium_14;
