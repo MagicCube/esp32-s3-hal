@@ -8,3 +8,5 @@ inline void app_main() {
   mainScene = new MainScene();
   mainScene->show();
 }
+
+inline void app_loop() {}
