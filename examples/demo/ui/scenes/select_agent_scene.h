@@ -1,5 +1,6 @@
 #pragma once
 
+#include <fonts/font_awesome.h>
 #include <mx.h>
 
 #include "../views/agent_card_roller.h"
@@ -30,7 +31,9 @@ class SelectAgentScene : public MXScene {
     statusBar->init();
     addSubview(statusBar);
 
-    callButton = root()->add_button(LV_SYMBOL_CALL, MX_FONT_SIZE_XL);
+    lv_font_t* lv_font_font_awesome_xl =
+        lv_tiny_ttf_create_data(font_awesome, font_awesome_size, 24);
+    callButton = root()->add_button("\uf095")->font(lv_font_font_awesome_xl);
     callButton->size(60, 60)
         ->align(LV_ALIGN_BOTTOM_MID, 0, -12)
         ->bg(rgb(0x31C959))
