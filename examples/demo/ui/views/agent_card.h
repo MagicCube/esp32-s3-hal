@@ -3,9 +3,6 @@
 #include "mx.h"
 
 LV_IMAGE_DECLARE(img_agent_card_bg);
-LV_IMAGE_DECLARE(img_agent_amy);
-LV_IMAGE_DECLARE(img_agent_bunny);
-LV_IMAGE_DECLARE(img_agent_einstein);
 
 class AgentCard : public MXView {
  public:
@@ -14,13 +11,13 @@ class AgentCard : public MXView {
   void setIndex(uint8_t index) {
     if (index == 0) {
       nameLabel->text("绵羊兔");
-      image->src(&img_agent_bunny);
+      image->src("/spiffs/avatar_bunny.png");
     } else if (index == 1) {
       nameLabel->text("艾米");
-      image->src(&img_agent_amy);
+      image->src("/spiffs/avatar_amy.png");
     } else if (index == 2) {
       nameLabel->text("爱因斯坦");
-      image->src(&img_agent_einstein);
+      image->src("/spiffs/avatar_einstein.png");
     }
   }
 
@@ -55,6 +52,6 @@ class AgentCard : public MXView {
                     ->center_x()
                     ->y(4)
                     ->text_opacity(0.67);
-    image = root()->add_image(&img_agent_amy)->align(LV_ALIGN_BOTTOM_MID);
+    image = root()->add_image()->align(LV_ALIGN_BOTTOM_MID);
   }
 };
