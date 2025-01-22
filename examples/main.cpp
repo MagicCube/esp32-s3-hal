@@ -25,15 +25,6 @@ void spiffs_setup() {
   }
 }
 
-void setup() {
-  hal_setup();
-  spiffs_setup();
-  lv_setup();
-  mx_preload();
-  app_preload();
-  app_main();
-}
-
 time_t last_serial_output = 0;
 void serial_loop() {
   if (millis() - last_serial_output > 10 * 1000) {
@@ -44,6 +35,16 @@ void serial_loop() {
 
     last_serial_output = millis();
   }
+}
+
+void setup() {
+  hal_setup();
+  spiffs_setup();
+  lv_setup();
+  mx_preload();
+  app_preload();
+  app_main();
+  serial_loop();
 }
 
 void loop() {
