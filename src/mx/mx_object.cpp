@@ -257,6 +257,12 @@ MXObject* MXObject::font(const lv_font_t* font) {
   return this;
 }
 
+MXObject* MXObject::icon_font(const size_t size) {
+  lv_font_t* f = make_icon_font(size);
+  font(f);
+  return this;
+}
+
 MXObject* MXObject::text(const char* text) {
   auto text_obj = get_text_obj();
   if (text_obj != nullptr) {

@@ -29,3 +29,7 @@ void setup_fonts() {
   lv_font_pingfang_medium_48 =
       lv_tiny_ttf_create_data(pingfang_medium, pingfang_medium_size, 48);
 }
+
+lv_font_t *make_icon_font(size_t size) {
+  return lv_tiny_ttf_create_data(font_awesome, font_awesome_size, size);
+}

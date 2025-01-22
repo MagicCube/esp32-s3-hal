@@ -1,13 +1,12 @@
 #include "main_scene.h"
 
 #include <audio.h>
+#include <fonts/fonts.h>
 
 #include "../../core/audio_recorder.h"
 
 #define BUTTON_BG_COLOR rgb(0xFF2C55)
 #define SCENE_BG_COLOR rgb(0x000000)
-
-LV_IMAGE_DECLARE(img_microphone);
 
 const char* INSTRUCTION_TEXT =
     "Press and hold to record.\nRelease to stop and play.";
@@ -46,7 +45,8 @@ void MainScene::onInit() {
                 ->rounded_full()
                 ->clickable(false);
   speakButton =
-      bigRing->add_button()
+      bigRing->add_button("\uf130")
+          ->icon_font(40)
           ->size(144)
           ->center()
           ->bg(BUTTON_BG_COLOR)
@@ -54,7 +54,6 @@ void MainScene::onInit() {
           ->on_pressed([this](MXEvent* e) { this->handleSpeakButtonPressed(); })
           ->on_released(
               [this](MXEvent* e) { this->handleSpeakButtonReleased(); });
-  speakButton->add_image(&img_microphone)->center(0)->clickable(false);
 
   init_pressed_style(&bigRingPressedStyle, 40);
   init_pressed_style(&midRingPressedStyle, 16);

@@ -146,6 +146,8 @@ class MXObject {
   // Font
   MXObject* font(const lv_font_t* font);
 
+  MXObject* icon_font(const size_t size);
+
   // Text
   MXObject* text(const char* text);
   inline MXObject* text(String str) { return text(str.c_str()); };
