@@ -14,8 +14,18 @@ class AgentCardRoller : public MXView {
   ~AgentCardRoller() {
     for (int i = 0; i < 3; i++) {
       delete cards[i];
+      cards[i] = nullptr;
     }
     delete bottom;
+    delete opacityScaleMap0;
+    delete opacityScaleMap1_0;
+    delete opacityScaleMap1_2;
+    delete opacityScaleMap2;
+    delete translateYScaleMap0;
+    delete translateYScaleMap1_0;
+    delete translateYScaleMap1_2;
+    delete translateYScaleMap2;
+    delete button;
   }
 
   void next() { cards[0]->root()->scroll_into_view(); }
