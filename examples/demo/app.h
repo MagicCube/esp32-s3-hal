@@ -10,3 +10,5 @@ class App : public MXApplication {
 
   inline void onStart() override { selectAgentScene->show(); }
 };
+
+App app;

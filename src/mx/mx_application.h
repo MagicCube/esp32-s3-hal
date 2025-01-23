@@ -2,14 +2,19 @@
 
 class MXApplication {
  public:
-  void init() { onInit(); };
+  MXApplication();
 
-  void start() { onStart(); };
+  static MXApplication* instance();
 
-  void update() { onUpdate(); };
+  void init();
+  void start();
+  void update();
 
  protected:
   inline virtual void onInit() {};
   inline virtual void onStart() {};
   inline virtual void onUpdate() {};
+
+ private:
+  static MXApplication* _instance;
 };
