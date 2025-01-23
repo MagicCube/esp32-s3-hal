@@ -14,13 +14,13 @@ class AgentCard : public MXView {
   void setIndex(uint8_t index) {
     if (index == 0) {
       nameLabel->text("Optimus Prime");
-      image->src("/spiffs/avatar_optimus_prime.png");
+      avatarImage->src("/spiffs/avatar_optimus_prime.png");
     } else if (index == 1) {
       nameLabel->text("Wukong");
-      image->src("/spiffs/avatar_wukong.png");
+      avatarImage->src("/spiffs/avatar_wukong.png");
     } else if (index == 2) {
       nameLabel->text("张飞");
-      image->src("/spiffs/avatar_zhang_fei.png");
+      avatarImage->src("/spiffs/avatar_zhang_fei.png");
     }
   }
 
@@ -31,7 +31,7 @@ class AgentCard : public MXView {
   }
 
  protected:
-  MXObject* image;
+  MXObject* avatarImage;
   MXObject* nameLabel;
   MXObject* background;
 
@@ -53,6 +53,6 @@ class AgentCard : public MXView {
                     ->center_x()
                     ->y(4)
                     ->text_opacity(0.67);
-    image = root()->add_image()->align(LV_ALIGN_BOTTOM_MID);
+    avatarImage = root()->add_image()->align(LV_ALIGN_BOTTOM_MID);
   }
 };
