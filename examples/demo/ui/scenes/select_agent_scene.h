@@ -1,5 +1,6 @@
 #pragma once
 
+#include <button.h>
 #include <mx.h>
 
 #include "../views/agent_card_roller.h"
@@ -11,12 +12,14 @@ class SelectAgentScene : public MXScene {
     delete agentCardRoller;
     delete statusBar;
     delete callButton;
+    delete rollButton;
   }
 
  protected:
   AgentCardRoller* agentCardRoller;
   StatusBar* statusBar;
   MXObject* callButton;
+  Button* rollButton;
 
   void onInit() override {
     MXScene::onInit();
@@ -35,11 +38,21 @@ class SelectAgentScene : public MXScene {
         ->align(LV_ALIGN_BOTTOM_MID, 0, -12)
         ->bg(rgb(0x31C959))
         ->rounded_full();
+
+    rollButton = new Button(0);
+    rollButton->begin();
+    rollButton->onClick([this](MXEvent* e) { agentCardRoller->prev(); });
   }
 
   void onShow() override {
     MXScene::onShow();
 
     agentCardRoller->show();
+  }
+
+  void onUpdate() override {
+    MXScene::onUpdate();
+
+    rollButton->update();
   }
 };

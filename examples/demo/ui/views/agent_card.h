@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../agents/agent_manager.h"
 #include "mx.h"
 
 LV_IMAGE_DECLARE(img_agent_card_bg);
@@ -11,17 +12,18 @@ class AgentCard : public MXView {
  public:
   ~AgentCard() { delete background; }
 
-  void setIndex(uint8_t index) {
-    if (index == 0) {
-      nameLabel->text("Optimus Prime");
-      avatarImage->src("/spiffs/avatar_optimus_prime.png");
-    } else if (index == 1) {
-      nameLabel->text("Wukong");
-      avatarImage->src("/spiffs/avatar_wukong.png");
-    } else if (index == 2) {
-      nameLabel->text("张飞");
-      avatarImage->src("/spiffs/avatar_zhang_fei.png");
+  uint8_t agentIndex() { return currentAgentIndex; }
+
+  void setAgentIndex(uint8_t index) {
+    currentAgentIndex = index;
+    const Agent* agent = AgentManager.agent(currentAgentIndex);
+    nameLabel->text(agent->name);
+    if (strlen(agent->name) > 10) {
+      nameLabel->text(MX_FONT_SIZE_2XL);
+    } else {
+      nameLabel->text(MX_FONT_SIZE_3XL);
     }
+    avatarImage->src(agent->avatar);
   }
 
   void translateY(float y) {
@@ -31,6 +33,7 @@ class AgentCard : public MXView {
   }
 
  protected:
+  uint8_t currentAgentIndex;
   MXObject* avatarImage;
   MXObject* nameLabel;
   MXObject* background;

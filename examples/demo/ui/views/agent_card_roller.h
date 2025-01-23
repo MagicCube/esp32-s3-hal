@@ -1,16 +1,14 @@
 #pragma once
 
+#include "../../agents/agent_manager.h"
 #include "../../utils/scale_map.h"
 #include "agent_card.h"
-#include "button.h"
-#include "display.h"
 #include "mx.h"
 
 LV_IMAGE_DECLARE(img_agent_card_bottom);
 
 class AgentCardRoller : public MXView {
  public:
-  void show() { cards[1]->root()->scroll_into_view(false); }
   ~AgentCardRoller() {
     for (int i = 0; i < 3; i++) {
       delete cards[i];
@@ -25,14 +23,32 @@ class AgentCardRoller : public MXView {
     delete translateYScaleMap1_0;
     delete translateYScaleMap1_2;
     delete translateYScaleMap2;
-    delete button;
   }
 
-  void next() { cards[0]->root()->scroll_into_view(); }
+  void show() {
+    if (currentAgentIndex == 0) {
+      setAgentIndex(0);
+    }
+    updateCards();
+  }
 
-  void prev() { cards[2]->root()->scroll_into_view(); }
+  void setAgentIndex(uint8_t index) {
+    currentAgentIndex = index;
+    uint8_t prevIndex =
+        (index == 0) ? AgentManager.agentCount() - 1 : index - 1;
+    cards[0]->setAgentIndex(prevIndex);
+    cards[1]->setAgentIndex(index);
+    uint8_t nextIndex =
+        (index == AgentManager.agentCount() - 1) ? 0 : index + 1;
+    cards[2]->setAgentIndex(nextIndex);
+  }
+
+  void next() { cards[2]->root()->scroll_into_view(); }
+
+  void prev() { cards[0]->root()->scroll_into_view(); }
 
  protected:
+  uint8_t currentAgentIndex = 0;
   MXObject* bottom;
   ScaleMap* opacityScaleMap0;
   ScaleMap* opacityScaleMap1_0;
@@ -48,14 +64,8 @@ class AgentCardRoller : public MXView {
 
   AgentCard* cards[3] = {nullptr, nullptr, nullptr};
 
-  Button* button;
-
   void onInit() override {
     MXView::onInit();
-
-    button = new Button(0);
-    button->begin();
-    button->onClick([this](MXEvent* e) { next(); });
 
     root()
         ->bg_black()
@@ -70,7 +80,7 @@ class AgentCardRoller : public MXView {
       cards[i] = new AgentCard();
       cards[i]->init();
       cards[i]->root()->y(36)->x(200 * i);
-      cards[i]->setIndex(i);
+      cards[i]->setAgentIndex(i);
       addSubview(cards[i]);
     }
 
@@ -92,12 +102,6 @@ class AgentCardRoller : public MXView {
                  ->y(174)
                  ->image_scale(1.1);
     bottom->add_flag(LV_OBJ_FLAG_FLOATING);
-  }
-
-  void onUpdate() override {
-    MXView::onUpdate();
-
-    button->update();
   }
 
   void updateCards() {
@@ -144,12 +148,14 @@ class AgentCardRoller : public MXView {
       cards[0] = temp[2];
       cards[1] = temp[0];
       cards[2] = temp[1];
+      setAgentIndex(cards[1]->agentIndex());
       updateCards();
     } else if (scrollX == 374) {
       // <=
       cards[0] = temp[1];
       cards[1] = temp[2];
       cards[2] = temp[0];
+      setAgentIndex(cards[1]->agentIndex());
       updateCards();
     }
   }
