@@ -1,5 +1,6 @@
 #pragma once
 
+class MXView;
 class MXScene;
 
 class MXApplication {
@@ -17,9 +18,12 @@ class MXApplication {
   static void activateScene(MXScene* scene);
 
  protected:
+  MXView* statusBar;
+
   inline virtual void onInit() {};
   inline virtual void onStart() {};
   inline virtual void onUpdate() {};
+  inline virtual void onSceneActivated(MXScene* scene) {};
 
  private:
   static MXApplication* _instance;

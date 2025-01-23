@@ -13,4 +13,4 @@ class App : public MXApplication {
   inline void onStart() override { mainScene->show(); }
 };
 
-App app;
+extern App app;

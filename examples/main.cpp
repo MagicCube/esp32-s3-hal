@@ -8,6 +8,8 @@
 
 #include "demo/app.h"
 
+App app;
+
 void hal_setup() {
   Serial.begin(115200);
   Display.begin();

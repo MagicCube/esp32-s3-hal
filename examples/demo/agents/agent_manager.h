@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Arduino.h>
+
 #include "agent.h"
 
 class AgentManagerClass {
@@ -27,4 +29,4 @@ class AgentManagerClass {
   };
 };
 
-AgentManagerClass AgentManager;
+extern AgentManagerClass AgentManager;

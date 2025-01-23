@@ -29,9 +29,6 @@ void MXScene::deactivate() {
     return;
   }
   onDeactivating();
-  if (MXApplication::activeScene() == this) {
-    MXApplication::activateScene(nullptr);
-  }
 }
 
 void MXScene::show(lv_scr_load_anim_t animation, uint32_t duration,
