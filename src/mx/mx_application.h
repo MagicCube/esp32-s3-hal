@@ -1,14 +1,20 @@
 #pragma once
 
+class MXScene;
+
 class MXApplication {
  public:
   MXApplication();
 
-  static MXApplication* instance();
+  inline static MXApplication* instance() { return _instance; }
 
-  void init();
-  void start();
-  void update();
+  inline static MXScene* activeScene() { return _activeScene; }
+
+  static void init();
+  static void start();
+  static void update();
+
+  static void activateScene(MXScene* scene);
 
  protected:
   inline virtual void onInit() {};
@@ -17,4 +23,5 @@ class MXApplication {
 
  private:
   static MXApplication* _instance;
+  static MXScene* _activeScene;
 };

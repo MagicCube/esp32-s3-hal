@@ -9,9 +9,7 @@ class MXScene : public MXView {
  public:
   MXScene();
 
-  inline static MXScene* activeScene() { return _activeScene; }
-
-  inline bool isActive() const { return _activeScene == this; }
+  bool isActive();
 
   void activate();
 
@@ -25,7 +23,4 @@ class MXScene : public MXView {
   virtual inline void onActivating() {};
   virtual inline void onDeactivating() {};
   virtual inline void onShow() {};
-
- private:
-  static MXScene* _activeScene;
 };

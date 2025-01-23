@@ -1,13 +1,41 @@
 #include "mx_application.h"
 
-MXApplication* MXApplication::_instance = nullptr;
+#include "mx_scene.h"
 
+MXApplication* MXApplication::_instance = nullptr;
+MXScene* MXApplication::_activeScene = nullptr;
 MXApplication::MXApplication() { _instance = this; }
 
-MXApplication* MXApplication::instance() { return _instance; }
+void MXApplication::init() {
+  if (_instance == nullptr) {
+    _instance = new MXApplication();
+  }
+  _instance->onInit();
+}
 
-void MXApplication::init() { onInit(); }
+void MXApplication::start() {
+  if (_instance == nullptr) {
+    return;
+  }
+  _instance->onStart();
+}
 
-void MXApplication::start() { onStart(); }
+void MXApplication::update() {
+  if (_instance == nullptr) {
+    return;
+  }
+  _instance->onUpdate();
+  if (_instance->activeScene()) {
+    _instance->activeScene()->update();
+  }
+}
 
-void MXApplication::update() { onUpdate(); }
+void MXApplication::activateScene(MXScene* scene) {
+  if (scene == _activeScene) {
+    return;
+  }
+  if (_activeScene) {
+    _activeScene->deactivate();
+  }
+  _activeScene = scene;
+}

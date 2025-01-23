@@ -8,10 +8,12 @@
 #include "mx/mx_scene.h"
 #include "mx/mx_view.h"
 
-inline void mx_preload() { mx_preload_fonts(); }
+inline void preload() { mx_preload_fonts(); }
 
-inline void mx_loop() {
-  if (MXScene::activeScene()) {
-    MXScene::activeScene()->update();
-  }
+inline void mx_setup() {
+  preload();
+  MXApplication::init();
+  MXApplication::start();
 }
+
+inline void mx_loop() { MXApplication::update(); }

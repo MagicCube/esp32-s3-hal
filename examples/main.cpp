@@ -41,15 +41,12 @@ void setup() {
   hal_setup();
   spiffs_setup();
   lv_setup();
-  mx_preload();
-  MXApplication::instance()->init();
-  MXApplication::instance()->start();
+  mx_setup();
   serial_loop();
 }
 
 void loop() {
   serial_loop();
-  MXApplication::instance()->update();
   mx_loop();
   // Always keep `lv_loop()` at the end of the loop
   lv_loop();

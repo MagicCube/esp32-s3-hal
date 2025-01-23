@@ -1,8 +1,10 @@
 #include "mx_scene.h"
 
-MXScene* MXScene::_activeScene = nullptr;
+#include "mx_application.h"
 
 MXScene::MXScene() : MXView() {}
+
+bool MXScene::isActive() { return MXApplication::activeScene() == this; }
 
 MXObject* MXScene::createRoot() {
   auto root = new MXObject(lv_obj_create(nullptr));
@@ -18,12 +20,8 @@ void MXScene::activate() {
   if (isActive()) {
     return;
   }
-  if (_activeScene) {
-    _activeScene->deactivate();
-    _activeScene = nullptr;
-  }
   onActivating();
-  _activeScene = this;
+  MXApplication::activateScene(this);
 }
 
 void MXScene::deactivate() {
@@ -31,8 +29,8 @@ void MXScene::deactivate() {
     return;
   }
   onDeactivating();
-  if (_activeScene == this) {
-    _activeScene = nullptr;
+  if (MXApplication::activeScene() == this) {
+    MXApplication::activateScene(nullptr);
   }
 }
 
