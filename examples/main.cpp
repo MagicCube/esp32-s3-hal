@@ -8,6 +8,8 @@
 
 #include "demo/app.h"
 
+App app;
+
 void hal_setup() {
   Serial.begin(115200);
   Display.begin();
@@ -42,14 +44,14 @@ void setup() {
   spiffs_setup();
   lv_setup();
   mx_preload();
-  app_preload();
-  app_main();
+  app.init();
+  app.start();
   serial_loop();
 }
 
 void loop() {
   serial_loop();
-  app_loop();
+  app.update();
   mx_loop();
   // Always keep `lv_loop()` at the end of the loop
   lv_loop();

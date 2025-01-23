@@ -1,5 +1,6 @@
 #pragma once
 
+#include "mx/mx_application.h"
 #include "mx/mx_color.h"
 #include "mx/mx_event.h"
 #include "mx/mx_font.h"

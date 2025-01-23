@@ -2,13 +2,11 @@
 
 #include "ui/scenes/main_scene.h"
 
-MainScene *mainScene;
+class App : public MXApplication {
+ protected:
+  MainScene *mainScene;
 
-inline void app_preload() {}
+  inline void onInit() override { mainScene = new MainScene(); }
 
-inline void app_main() {
-  mainScene = new MainScene();
-  mainScene->show();
-}
-
-inline void app_loop() {}
+  inline void onStart() override { mainScene->show(); }
+};
