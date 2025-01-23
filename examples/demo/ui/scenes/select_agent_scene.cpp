@@ -1,6 +1,6 @@
 #include "select_agent_scene.h"
 
-#include "./home_scene.h"
+#include "./call_agent_scene.h"
 
 SelectAgentScene* SelectAgentScene::_instance = nullptr;
 
@@ -14,12 +14,14 @@ void SelectAgentScene::onInit() {
   agentCardRoller->root()->size_full();
   addSubview(agentCardRoller);
 
-  callButton = root()->add_button("\uf095")->icon_font(24);
-  callButton->size(60, 60)
-      ->align(LV_ALIGN_BOTTOM_MID, 0, -12)
-      ->bg(rgb(0x31C959))
-      ->rounded_full()
-      ->on_click([this](MXEvent* e) { handleCallButtonClick(); });
+  callButton = root()
+                   ->add_button("\uf095")
+                   ->icon_font(24)
+                   ->size(60, 60)
+                   ->align(LV_ALIGN_BOTTOM_MID, 0, -12)
+                   ->bg(rgb(0x31C959))
+                   ->rounded_full()
+                   ->on_click([this](MXEvent* e) { handleCallButtonClick(); });
 
   rollButton = new Button(0);
   rollButton->begin();
@@ -35,5 +37,5 @@ void SelectAgentScene::onUpdate() {
 }
 
 void SelectAgentScene::handleCallButtonClick() {
-  HomeScene::instance()->show();
+  CallAgentScene::instance()->show();
 }

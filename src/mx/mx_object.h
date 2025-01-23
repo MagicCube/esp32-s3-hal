@@ -120,6 +120,7 @@ class MXObject {
   // Border
   MXObject* border(const uint16_t size,
                    const lv_color_t color = lv_color_black(),
+                   const float opacity = 1,
                    const lv_border_side_t side = LV_BORDER_SIDE_FULL);
   MXObject* border_none();
 
@@ -180,6 +181,16 @@ class MXObject {
     }
     return rounded(LV_RADIUS_CIRCLE);
   }
+
+  // Transform
+  MXObject* transform_origin(const lv_coord_t x, const lv_coord_t y);
+  inline MXObject* transform_origin_center() {
+    return transform_origin(lv_pct(50), lv_pct(50));
+  }
+  MXObject* transform_rotate(const float degrees);
+  // MXObject* transform_translate(const lv_coord_t x, const lv_coord_t y);
+  // MXObject* transform_translate_x(const lv_coord_t x);
+  // MXObject* transform_translate_y(const lv_coord_t y);
 
   // Clip
   MXObject* clip_content();
@@ -254,7 +265,10 @@ class MXObject {
 
   // Image
   MXObject* src(const void* src);
-  MXObject* image_pivot(const lv_coord_t x, const lv_coord_t y);
+  MXObject* image_origin(const lv_coord_t x, const lv_coord_t y);
+  inline MXObject* image_origin_center() {
+    return image_origin(lv_pct(50), lv_pct(50));
+  }
   MXObject* image_scale(const float scale);
   MXObject* image_rotate(const float degrees);
 

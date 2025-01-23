@@ -215,7 +215,7 @@ MXObject* MXObject::align(const lv_align_t align, const lv_coord_t offset_x,
 }
 
 MXObject* MXObject::border(const uint16_t size, const lv_color_t color,
-                           const lv_border_side_t side) {
+                           const float opacity, const lv_border_side_t side) {
   if (size == 0) {
     lv_obj_set_style_border_width(lv_obj, 0, LV_PART_MAIN);
     lv_obj_set_style_border_side(lv_obj, LV_BORDER_SIDE_NONE, LV_PART_MAIN);
@@ -223,6 +223,7 @@ MXObject* MXObject::border(const uint16_t size, const lv_color_t color,
     lv_obj_set_style_border_width(lv_obj, size, LV_PART_MAIN);
     lv_obj_set_style_border_side(lv_obj, side, LV_PART_MAIN);
     lv_obj_set_style_border_color(lv_obj, color, LV_PART_MAIN);
+    lv_obj_set_style_border_opa(lv_obj, opacity * 255, LV_PART_MAIN);
   }
   return this;
 }
@@ -352,6 +353,17 @@ MXObject* MXObject::rounded(const lv_coord_t radius) {
   return this;
 }
 
+MXObject* MXObject::transform_origin(const lv_coord_t x, const lv_coord_t y) {
+  lv_obj_set_style_transform_pivot_x(lv_obj, x, LV_PART_MAIN);
+  lv_obj_set_style_transform_pivot_y(lv_obj, y, LV_PART_MAIN);
+  return this;
+}
+
+MXObject* MXObject::transform_rotate(const float degrees) {
+  lv_obj_set_style_transform_angle(lv_obj, degrees * 10, LV_PART_MAIN);
+  return this;
+}
+
 MXObject* MXObject::clip_content() {
   lv_obj_set_style_clip_corner(lv_obj, true, LV_PART_MAIN);
   return this;
@@ -477,7 +489,7 @@ MXObject* MXObject::src(const void* src) {
   return this;
 }
 
-MXObject* MXObject::image_pivot(const lv_coord_t x, const lv_coord_t y) {
+MXObject* MXObject::image_origin(const lv_coord_t x, const lv_coord_t y) {
   lv_img_set_pivot(lv_obj, x, y);
   return this;
 }
