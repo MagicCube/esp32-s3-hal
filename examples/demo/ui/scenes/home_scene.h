@@ -15,6 +15,9 @@ class HomeScene : public MXScene {
     return _instance;
   }
 
+ protected:
+  void onInit() override;
+
  private:
   static HomeScene* _instance;
 };

@@ -7,6 +7,8 @@ SelectAgentScene* SelectAgentScene::_instance = nullptr;
 void SelectAgentScene::onInit() {
   MXScene::onInit();
 
+  root()->bg_black();
+
   agentCardRoller = new AgentCardRoller();
   agentCardRoller->init();
   agentCardRoller->root()->size_full();
