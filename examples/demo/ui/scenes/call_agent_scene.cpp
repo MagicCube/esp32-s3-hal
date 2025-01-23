@@ -12,7 +12,7 @@ void CallAgentScene::onInit() {
                       ->text_center()
                       ->text_secondary();
   nameLabel = root()
-                  ->add_label("Amy", MX_FONT_SIZE_XL)
+                  ->add_label("孙悟空", MX_FONT_SIZE_XL)
                   ->w_full()
                   ->center_x(0, 48)
                   ->text_center();
