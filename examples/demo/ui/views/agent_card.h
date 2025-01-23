@@ -13,14 +13,14 @@ class AgentCard : public MXView {
 
   void setIndex(uint8_t index) {
     if (index == 0) {
-      nameLabel->text("绵羊兔");
-      image->src("/spiffs/avatar_bunny.png");
+      nameLabel->text("Optimus Prime");
+      image->src("/spiffs/avatar_optimus_prime.png");
     } else if (index == 1) {
-      nameLabel->text("艾米");
-      image->src("/spiffs/avatar_amy.png");
+      nameLabel->text("Wukong");
+      image->src("/spiffs/avatar_wukong.png");
     } else if (index == 2) {
-      nameLabel->text("爱因斯坦");
-      image->src("/spiffs/avatar_einstein.png");
+      nameLabel->text("张飞");
+      image->src("/spiffs/avatar_zhang_fei.png");
     }
   }
 
