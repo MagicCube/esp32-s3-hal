@@ -85,7 +85,7 @@ void WiFiConnectorClass::onScanResult(int n) {
 
 void WiFiConnectorClass::onConnected() {
   Serial.println("WiFiConnector is updating time...");
-  configTime(8 * 3600, 0, "cn.ntp.org.cn");
+  configTime(8 * 3600, 0, "ntp.aliyun.com");
 }
 
 WiFiConnectorClass WiFiConnector;
