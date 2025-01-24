@@ -13,7 +13,7 @@ void StatusBar::onInit() {
       ->p_x(24)
       ->y(12);
 
-  timeLabel = root()->add_label("");
+  timeLabel = root()->add_label("--:--");
 
   right = root()->add_object()->flex_row()->gap(8);
   wifiIndicator = right->add_label()->h(17)->p_y(2)->text_opacity(0.4)->font(
@@ -27,16 +27,16 @@ void StatusBar::onUpdate() {
 
 void StatusBar::_updateTime() {
   if (WiFiConnector.state() != WIFI_CONNECTOR_STATE_CONNECTED) {
-    timeLabel->text("");
+    timeLabel->text("--:--")->text_opacity(0.1);
     return;
   }
   if (_nextUpdateTime == 0 || millis() > _nextUpdateTime) {
     struct tm timeInfo;
     if (!getLocalTime(&timeInfo, 1000 / 30)) {
-      timeLabel->text("");
+      timeLabel->text("--:--")->text_opacity(0.1);
       return;
     }
-    timeLabel->text(formatTime(timeInfo));
+    timeLabel->text(formatTime(timeInfo))->text_opacity(1);
     _nextUpdateTime = millis() + (60 - timeInfo.tm_sec) * 1000;
   }
 }
@@ -53,13 +53,13 @@ void StatusBar::_updateWiFI() {
         _lastAnimationUpdateTime = millis();
         switch (_nextAnimationFrame() % 3) {
           case 0:
-            wifiIndicator->text(".")->text_opacity(0.4);
+            wifiIndicator->text(".")->text_opacity(0.5);
             break;
           case 1:
-            wifiIndicator->text(". .  ")->text_opacity(0.4);
+            wifiIndicator->text(". .  ")->text_opacity(0.5);
             break;
           case 2:
-            wifiIndicator->text(". . .")->text_opacity(0.4);
+            wifiIndicator->text(". . .")->text_opacity(0.5);
             break;
         }
       }
@@ -72,7 +72,7 @@ void StatusBar::_updateWiFI() {
             wifiIndicator->text(LV_SYMBOL_WIFI)->text_opacity(0.2);
             break;
           case 1:
-            wifiIndicator->text(LV_SYMBOL_WIFI)->text_opacity(0.4);
+            wifiIndicator->text(LV_SYMBOL_WIFI)->text_opacity(0.5);
             break;
         }
       }
