@@ -19,6 +19,8 @@ struct KnownSSID {
 
 class WiFiConnectorClass {
  public:
+  static constexpr time_t SCAN_TIMEOUT = 5 * 60 * 1000;
+
   inline WiFiConnectorState state() { return _state; }
   inline String connectedSSID() { return _connectedSSID; }
 
@@ -35,6 +37,7 @@ class WiFiConnectorClass {
   void onScanResult(int n);
 
  private:
+  time_t _scanStartTime = 0;
   WiFiConnectorState _state = WIFI_CONNECTOR_STATE_INITIAL;
   String _connectedSSID = "";
   std::vector<KnownSSID> _knownSSIDList;

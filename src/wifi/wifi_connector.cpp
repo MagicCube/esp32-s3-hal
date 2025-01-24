@@ -7,7 +7,10 @@ void WiFiConnectorClass::addKnownSSID(const String& ssid,
   _knownSSIDList.push_back({ssid, password});
 }
 
-void WiFiConnectorClass::begin() { scan(); }
+void WiFiConnectorClass::begin() {
+  _scanStartTime = millis();
+  scan();
+}
 
 void WiFiConnectorClass::end() { setState(WIFI_CONNECTOR_STATE_INITIAL); }
 
@@ -22,6 +25,8 @@ void WiFiConnectorClass::update() {
     if (WiFi.status() == WL_CONNECTED) {
       _connectedSSID = WiFi.SSID();
       setState(WIFI_CONNECTOR_STATE_CONNECTED);
+      Serial.printf("WiFiConnector is now connected to %s\n",
+                    _connectedSSID.c_str());
     }
   }
 }
@@ -34,6 +39,8 @@ void WiFiConnectorClass::scan() {
 
   setState(WIFI_CONNECTOR_STATE_SCANNING);
   WiFi.scanNetworks(true, false, false, 120UL);
+
+  Serial.printf("WiFiConnector is scanning...");
 }
 
 void WiFiConnectorClass::connect(const String& ssid, const String& password) {
@@ -44,28 +51,11 @@ void WiFiConnectorClass::connect(const String& ssid, const String& password) {
   _connectedSSID = "";
   setState(WIFI_CONNECTOR_STATE_CONNECTING);
   WiFi.begin(ssid.c_str(), password.c_str());
-  Serial.printf("WiFiConnector is now connecting to %s\n", ssid.c_str());
+  Serial.printf("WiFiConnector is connecting to %s\n", ssid.c_str());
 }
 
 void WiFiConnectorClass::setState(WiFiConnectorState newState) {
   _state = newState;
-  switch (newState) {
-    case WIFI_CONNECTOR_STATE_SCANNING:
-      Serial.println("Scanning for WiFi networks...");
-      break;
-    case WIFI_CONNECTOR_STATE_CONNECTING:
-      Serial.println("Connecting to WiFi network...");
-      break;
-    case WIFI_CONNECTOR_STATE_CONNECTED:
-      Serial.println("Connected to WiFi network");
-      break;
-    case WIFI_CONNECTOR_STATE_DISCONNECTED:
-      Serial.println("Disconnected from WiFi network");
-      break;
-    default:
-      Serial.println("Unknown state");
-      break;
-  }
 }
 
 void WiFiConnectorClass::onScanResult(int n) {
@@ -78,11 +68,17 @@ void WiFiConnectorClass::onScanResult(int n) {
       WiFi.scanDelete();
       Serial.printf("WiFiConnector found known SSID: %s\nConnecting...\n",
                     ssid.c_str());
-      connect(it->ssid, it->password);
+      if (_state == WIFI_CONNECTOR_STATE_SCANNING) {
+        connect(it->ssid, it->password);
+      }
       return;
     }
   }
   WiFi.scanDelete();
+  if (millis() - _scanStartTime > SCAN_TIMEOUT) {
+    Serial.println("WiFiConnector scan timeout");
+    setState(WIFI_CONNECTOR_STATE_INITIAL);
+  }
 }
 
 WiFiConnectorClass WiFiConnector;
