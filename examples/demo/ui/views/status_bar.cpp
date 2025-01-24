@@ -13,7 +13,7 @@ void StatusBar::onInit() {
       ->p_x(24)
       ->y(12);
 
-  timeLabel = root()->add_label("--:--");
+  timeLabel = root()->add_label("");
 
   right = root()->add_object()->flex_row()->gap(8);
   wifiIndicator = right->add_label()->h(17)->p_y(2)->text_opacity(0.4)->font(
@@ -27,17 +27,17 @@ void StatusBar::onUpdate() {
 
 void StatusBar::_updateTime() {
   if (WiFiConnector.state() != WIFI_CONNECTOR_STATE_CONNECTED) {
-    timeLabel->text("--:--")->text_opacity(0.4);
+    timeLabel->text("");
     return;
   }
   if (_nextUpdateTime == 0 || millis() > _nextUpdateTime) {
     struct tm timeInfo;
     if (!getLocalTime(&timeInfo, 1000 / 30)) {
-      timeLabel->text("--:--")->text_opacity(0.4);
+      timeLabel->text("");
       return;
     }
-    timeLabel->text(formatTime(timeInfo))->text_opacity(1);
-    _nextUpdateTime = millis() + (60 - timeInfo.tm_sec + 1) * 1000;
+    timeLabel->text(formatTime(timeInfo));
+    _nextUpdateTime = millis() + (60 - timeInfo.tm_sec) * 1000;
   }
 }
 
