@@ -37,7 +37,7 @@ void WiFiConnectorClass::scan() {
   setState(WIFI_CONNECTOR_STATE_SCANNING);
   WiFi.scanNetworks(true, false, false, 120UL);
 
-  Serial.printf("WiFiConnector is scanning...");
+  Serial.println("WiFiConnector is scanning...");
 }
 
 void WiFiConnectorClass::connect(const String& ssid, const String& password) {
