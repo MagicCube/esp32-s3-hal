@@ -1,5 +1,7 @@
 #include "status_bar.h"
 
+#include <utils/time_formatter.h>
+
 void StatusBar::onInit() {
   MXView::onInit();
 
@@ -30,14 +32,11 @@ void StatusBar::_updateTime() {
   }
   if (_nextUpdateTime == 0 || millis() > _nextUpdateTime) {
     struct tm timeInfo;
-    if (!getLocalTime(&timeInfo)) {
+    if (!getLocalTime(&timeInfo, 1000 / 30)) {
       timeLabel->text("--:--")->text_opacity(0.4);
       return;
     }
-    String timeStr =
-        String(timeInfo.tm_hour < 10 ? "0" : "") + String(timeInfo.tm_hour) +
-        ":" + String(timeInfo.tm_min < 10 ? "0" : "") + String(timeInfo.tm_min);
-    timeLabel->text(timeStr)->text_opacity(1);
+    timeLabel->text(formatTime(timeInfo))->text_opacity(1);
     _nextUpdateTime = millis() + (60 - timeInfo.tm_sec + 1) * 1000;
   }
 }
