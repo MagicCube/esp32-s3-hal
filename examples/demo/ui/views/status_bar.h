@@ -1,39 +1,39 @@
 #pragma once
 
 #include "mx.h"
+#include "wifi/wifi_connector.h"
 
 class StatusBar : public MXView {
  public:
-  void onInit() override {
-    MXView::onInit();
-
-    root()
-        ->flex_row(LV_FLEX_ALIGN_SPACE_BETWEEN, LV_FLEX_ALIGN_CENTER)
-        ->w_full()
-        ->h(17)
-        ->pos(0, 0)
-        ->p_x(24)
-        ->y(12);
-
-    timeLabel = root()->add_label("12:18");
-
-    right = root()->add_object()->flex_row()->gap(8);
-    wifiIndicator =
-        right->add_label(LV_SYMBOL_WIFI)->font(&lv_font_montserrat_16);
-    batteryIndicator =
-        right->add_label(LV_SYMBOL_BATTERY_FULL)->font(&lv_font_montserrat_16);
-  }
+  void onInit() override;
 
   ~StatusBar() {
     delete timeLabel;
     delete right;
     delete wifiIndicator;
-    delete batteryIndicator;
   }
 
  protected:
   MXObject *timeLabel;
   MXObject *right;
   MXObject *wifiIndicator;
-  MXObject *batteryIndicator;
+
+  void onUpdate() override;
+
+ private:
+  time_t _nextUpdateTime = 0;
+  WiFiConnectorState _lastWiFiState = WIFI_CONNECTOR_STATE_INITIAL;
+  uint8_t _animationFrameIndex = 0;
+  time_t _lastAnimationUpdateTime = 0;
+
+  inline uint8_t _nextAnimationFrame() {
+    _animationFrameIndex = (_animationFrameIndex + 1);
+    if (_animationFrameIndex >= 6) {
+      _animationFrameIndex = 0;
+    }
+    return _animationFrameIndex;
+  }
+
+  void _updateTime();
+  void _updateWiFI();
 };

@@ -47,6 +47,8 @@ MXObject* MXObject::add_label(const char* text, const MXFontSize fontSize) {
   MXObject* label = new MXObject(lv_label);
   if (text != nullptr) {
     label->text(text);
+  } else {
+    label->text("");
   }
   label->text(fontSize);
   return label;
@@ -267,6 +269,8 @@ MXObject* MXObject::text(const char* text) {
   auto text_obj = get_text_obj();
   if (text_obj != nullptr) {
     lv_label_set_text(text_obj, text);
+  } else {
+    lv_label_set_text(text_obj, "");
   }
   return this;
 }

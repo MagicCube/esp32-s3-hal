@@ -35,6 +35,7 @@ class WiFiConnectorClass {
   void scan();
   void connect(const String& ssid, const String& password);
   void onScanResult(int n);
+  void onConnected();
 
  private:
   time_t _scanStartTime = 0;

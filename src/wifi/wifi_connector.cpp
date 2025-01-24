@@ -1,6 +1,7 @@
 #include "wifi_connector.h"
 
 #include <WiFi.h>
+#include <time.h>
 
 void WiFiConnectorClass::addKnownSSID(const String& ssid,
                                       const String& password) {
@@ -25,6 +26,7 @@ void WiFiConnectorClass::update() {
     if (WiFi.status() == WL_CONNECTED) {
       _connectedSSID = WiFi.SSID();
       setState(WIFI_CONNECTOR_STATE_CONNECTED);
+      onConnected();
       Serial.printf("WiFiConnector is now connected to %s\n",
                     _connectedSSID.c_str());
     }
@@ -79,6 +81,11 @@ void WiFiConnectorClass::onScanResult(int n) {
     Serial.println("WiFiConnector scan timeout");
     setState(WIFI_CONNECTOR_STATE_INITIAL);
   }
+}
+
+void WiFiConnectorClass::onConnected() {
+  Serial.println("WiFiConnector is updating time...");
+  configTime(8 * 3600, 0, "cn.ntp.org.cn");
 }
 
 WiFiConnectorClass WiFiConnector;
