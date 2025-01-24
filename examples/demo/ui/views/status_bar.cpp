@@ -37,7 +37,7 @@ void StatusBar::_updateTime() {
       return;
     }
     timeLabel->text(formatTime(timeInfo))->text_opacity(1);
-    _nextUpdateTime = millis() + (60 - timeInfo.tm_sec) * 1000;
+    _nextUpdateTime = millis() + (60 - timeInfo.tm_sec + 1) * 1000;
   }
 }
 
