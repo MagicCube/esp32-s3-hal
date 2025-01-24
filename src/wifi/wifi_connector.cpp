@@ -34,11 +34,6 @@ void WiFiConnectorClass::update() {
 }
 
 void WiFiConnectorClass::scan() {
-  if (_state == WIFI_CONNECTOR_STATE_SCANNING ||
-      _state == WIFI_CONNECTOR_STATE_CONNECTING) {
-    return;
-  }
-
   setState(WIFI_CONNECTOR_STATE_SCANNING);
   WiFi.scanNetworks(true, false, false, 120UL);
 
@@ -80,6 +75,9 @@ void WiFiConnectorClass::onScanResult(int n) {
   if (millis() - _scanStartTime > SCAN_TIMEOUT) {
     Serial.println("WiFiConnector scan timeout");
     setState(WIFI_CONNECTOR_STATE_INITIAL);
+  } else {
+    Serial.println("WiFiConnector continue scanning...");
+    scan();
   }
 }
 
