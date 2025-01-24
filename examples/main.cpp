@@ -7,6 +7,7 @@
 #include <mx.h>
 
 #include "demo/app.h"
+#include "wifi.h"
 
 App app;
 
@@ -41,6 +42,7 @@ void serial_loop() {
 
 void setup() {
   hal_setup();
+  wifi_setup();
   spiffs_setup();
   lv_setup();
   mx_setup();
@@ -49,6 +51,7 @@ void setup() {
 
 void loop() {
   serial_loop();
+  wifi_loop();
   mx_loop();
   // Always keep `lv_loop()` at the end of the loop
   lv_loop();
