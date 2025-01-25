@@ -33,11 +33,11 @@ void HomeScene::onInit() {
       appIconsPage = root()
                          ->add_object()
                          ->flex(LV_FLEX_FLOW_ROW_WRAP)
-                         ->gap(32, 12)
+                         ->gap(24, 12)
                          ->w_full()
                          ->x(pageIndex * 240)
                          ->y(40)
-                         ->p_x(16);
+                         ->p_x(20);
       appIconsPages[pageIndex] = appIconsPage;
       pageIndex++;
     }
