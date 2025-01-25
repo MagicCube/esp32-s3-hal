@@ -1,6 +1,5 @@
 #pragma once
 
-#include <button.h>
 #include <mx.h>
 
 class CallAgentScene : public MXScene {
@@ -22,11 +21,6 @@ class CallAgentScene : public MXScene {
   MXObject* durationLabel;
 
   void onInit() override;
-
-  inline void onDeactivating() override {
-    MXScene::onDeactivating();
-    Serial.println("CallAgentScene onDeactivate");
-  }
 
  private:
   static CallAgentScene* _instance;
