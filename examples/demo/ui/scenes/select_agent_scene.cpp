@@ -23,18 +23,10 @@ void SelectAgentScene::onInit() {
                    ->rounded_full()
                    ->on_click([this](MXEvent* e) { handleCallButtonClick(); });
 
-  rollButton = new Button(0);
-  rollButton->begin();
-  rollButton->onClick([this](MXEvent* e) { agentCardRoller->prev(); });
-
   agentCardRoller->show();
 }
 
-void SelectAgentScene::onUpdate() {
-  MXScene::onUpdate();
-
-  rollButton->update();
-}
+void SelectAgentScene::onUpdate() { MXScene::onUpdate(); }
 
 void SelectAgentScene::handleCallButtonClick() {
   CallAgentScene::instance()->show();

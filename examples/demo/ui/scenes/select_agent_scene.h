@@ -1,6 +1,5 @@
 #pragma once
 
-#include <button.h>
 #include <mx.h>
 
 #include "../views/agent_card_roller.h"
@@ -18,13 +17,11 @@ class SelectAgentScene : public MXScene {
   inline ~SelectAgentScene() {
     delete agentCardRoller;
     delete callButton;
-    delete rollButton;
   }
 
  protected:
   AgentCardRoller* agentCardRoller;
   MXObject* callButton;
-  Button* rollButton;
 
   void onInit() override;
   void onUpdate() override;
