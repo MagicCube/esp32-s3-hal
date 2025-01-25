@@ -23,6 +23,11 @@ class CallAgentScene : public MXScene {
 
   void onInit() override;
 
+  inline void onDeactivating() override {
+    MXScene::onDeactivating();
+    Serial.println("CallAgentScene onDeactivate");
+  }
+
  private:
   static CallAgentScene* _instance;
 };
