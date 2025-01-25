@@ -19,6 +19,7 @@ void hal_setup() {
 #ifdef DISPLAY_ST77916
   Display.rotate(180);
 #endif
+  // delay(500);
 }
 
 void spiffs_setup() {
@@ -41,9 +42,9 @@ void serial_loop() {
 }
 
 void setup() {
+  spiffs_setup();
   hal_setup();
   wifi_setup();
-  spiffs_setup();
   lv_setup();
   mx_setup();
   serial_loop();
