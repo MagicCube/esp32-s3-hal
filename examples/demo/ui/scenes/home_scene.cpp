@@ -1,5 +1,6 @@
 #include "home_scene.h"
 
+#include "camera_scene.h"
 #include "select_agent_scene.h"
 
 HomeScene* HomeScene::_instance = nullptr;
@@ -29,7 +30,6 @@ void HomeScene::onInit() {
   MXObject* appIconsPage = nullptr;
   for (uint16_t i = 0; i < iconCount; i++) {
     if (i % 4 == 0) {
-      Serial.printf("pageIndex: %d\n", pageIndex);
       appIconsPage = root()
                          ->add_object()
                          ->flex(LV_FLEX_FLOW_ROW_WRAP)
@@ -62,5 +62,7 @@ void HomeScene::onInit() {
 void HomeScene::handleAppButtonClick(const AppInfo& appInfo) {
   if (strcmp(appInfo.id, "call_agent") == 0) {
     SelectAgentScene::instance()->show();
+  } else if (strcmp(appInfo.id, "camera") == 0) {
+    CameraScene::instance()->show();
   }
 }
