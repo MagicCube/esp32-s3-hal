@@ -11,7 +11,8 @@ void StatusBar::onInit() {
       ->h(17)
       ->pos(0, 0)
       ->p_x(24)
-      ->y(12);
+      ->y(12)
+      ->add_flag(LV_OBJ_FLAG_FLOATING);
 
   timeLabel = root()->add_label()->font(&lv_font_montserrat_14);
 

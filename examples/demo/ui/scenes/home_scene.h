@@ -12,11 +12,11 @@ struct AppInfo {
   const lv_color_t color = lv_color_black();
 };
 
-extern AppInfo APP_INFO_LIST[4];
+extern AppInfo APP_INFO_LIST[];
 
 class HomeScene : public MXScene {
  public:
-  ~HomeScene() { delete appIconsContainer; }
+  ~HomeScene() { delete[] appIconsPages; }
 
   inline static HomeScene* instance() {
     if (_instance == nullptr) {
@@ -27,7 +27,7 @@ class HomeScene : public MXScene {
   }
 
  protected:
-  MXObject* appIconsContainer;
+  MXObject** appIconsPages;
   void onInit() override;
 
  private:
