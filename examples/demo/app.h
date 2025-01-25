@@ -1,22 +1,31 @@
 #pragma once
 
+#include <button.h>
+#include <mx.h>
+
 #include "ui/scenes/home_scene.h"
-#include "ui/scenes/select_agent_scene.h"
 #include "ui/views/status_bar.h"
 
 class App : public MXApplication {
  protected:
-  SelectAgentScene* selectAgentScene;
+  Button* homeButton;
 
   inline void onInit() override {
     statusBar = new StatusBar();
     statusBar->init();
 
-    selectAgentScene = new SelectAgentScene();
-    selectAgentScene->init();
+    HomeScene::instance()->init();
+
+    homeButton = new Button(0);
+    homeButton->onClick([this](MXEvent* e) { onHomeButtonClick(); });
+    homeButton->begin();
   }
 
-  inline void onStart() override { selectAgentScene->show(); }
+  inline void onStart() override { HomeScene::instance()->show(); }
+
+  inline void onUpdate() override { homeButton->update(); }
+
+  inline void onHomeButtonClick() { HomeScene::instance()->show(); }
 };
 
 extern App app;
