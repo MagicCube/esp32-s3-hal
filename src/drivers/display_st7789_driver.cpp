@@ -40,8 +40,6 @@ ESP_PanelLcd* display_init() {
 void show_splash_screen(ESP_PanelLcd* lcd, const char* fileName) {
   File splash_screen_file = SPIFFS.open(fileName, FILE_READ);
   if (splash_screen_file) {
-    Serial.println("Splash screen found");
-    Serial.println("File size: " + String(splash_screen_file.size()));
     uint8_t* splash_screen_data = new uint8_t[splash_screen_file.size()];
     splash_screen_file.readBytes((char*)splash_screen_data,
                                  splash_screen_file.size());
