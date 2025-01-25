@@ -29,6 +29,7 @@ class HomeScene : public MXScene {
  protected:
   MXObject** appIconsPages;
   void onInit() override;
+  void handleAppButtonClick(const AppInfo& appInfo);
 
  private:
   static HomeScene* _instance;

@@ -7,12 +7,12 @@ HomeScene* HomeScene::_instance = nullptr;
 LV_IMG_DECLARE(img_home_scene_bg);
 
 AppInfo APP_INFO_LIST[6] = {
-    {"select_agent_scene", "通话", "\uf095", rgb(0x31C959)},
-    {"camera_scene", "相机", "\uf030", rgb(0x36BC9B)},
-    {"music_scene", "音乐", "\uf001", rgb(0xE64D3D)},
-    {"aigc_scene", "绘话", "\ue2ca", rgb(0x4FC0E8)},
-    {"studio_scene", "智能体", "\uf4ff", rgb(0xF1C30E)},
-    {"settings_scene", "设置", "\uf013", rgb(0xA6AFB6)},
+    {"call_agent", "通话", "\uf095", rgb(0x31C959)},
+    {"camera", "相机", "\uf030", rgb(0x36BC9B)},
+    {"music", "音乐", "\uf001", rgb(0xE64D3D)},
+    {"aigc", "绘话", "\ue2ca", rgb(0x4FC0E8)},
+    {"studio", "智能体", "\uf4ff", rgb(0xF1C30E)},
+    {"settings", "设置", "\uf013", rgb(0xA6AFB6)},
 };
 
 void HomeScene::onInit() {
@@ -47,11 +47,20 @@ void HomeScene::onInit() {
             ->flex_col(LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER,
                        LV_FLEX_ALIGN_CENTER)
             ->gap(0, 4);
-    MXObject* appIcon = appIconContainer->add_button(appInfo.icon)
-                            ->size(88)
-                            ->rounded(20)
-                            ->bg(appInfo.color)
-                            ->icon_font(48);
+    MXObject* appButton = appIconContainer->add_button(appInfo.icon)
+                              ->size(88)
+                              ->rounded(20)
+                              ->bg(appInfo.color)
+                              ->icon_font(48)
+                              ->on_click([this, appInfo](MXEvent* e) {
+                                this->handleAppButtonClick(appInfo);
+                              });
     MXObject* appName = appIconContainer->add_label(appInfo.name);
+  }
+}
+
+void HomeScene::handleAppButtonClick(const AppInfo& appInfo) {
+  if (strcmp(appInfo.id, "call_agent") == 0) {
+    SelectAgentScene::instance()->show();
   }
 }

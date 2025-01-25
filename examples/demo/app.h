@@ -17,7 +17,7 @@ class App : public MXApplication {
     HomeScene::instance()->init();
 
     homeButton = new Button(0);
-    homeButton->onClick([this](MXEvent* e) { onHomeButtonClick(); });
+    homeButton->onClick([this](MXEvent* e) { handleHomeButtonClick(); });
     homeButton->begin();
   }
 
@@ -25,7 +25,7 @@ class App : public MXApplication {
 
   inline void onUpdate() override { homeButton->update(); }
 
-  inline void onHomeButtonClick() { HomeScene::instance()->show(); }
+  inline void handleHomeButtonClick() { HomeScene::instance()->show(); }
 };
 
 extern App app;
