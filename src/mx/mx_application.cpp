@@ -45,8 +45,10 @@ void MXApplication::activateScene(MXScene* scene) {
   _activeScene = scene;
 
   if (_instance != nullptr && _activeScene != nullptr) {
-    lv_obj_set_parent(_instance->statusBar->root()->lv_object(),
-                      _activeScene->root()->lv_object());
+    if (_activeScene->statusBarMode() != STATUS_BAR_MODE_NONE) {
+      lv_obj_set_parent(_instance->statusBar->root()->lv_object(),
+                        _activeScene->root()->lv_object());
+    }
 
     _instance->onSceneActivated(scene);
   }

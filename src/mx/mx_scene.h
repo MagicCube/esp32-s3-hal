@@ -5,9 +5,18 @@
 #include "mx_object.h"
 #include "mx_view.h"
 
+enum MXSceneStatusBarMode {
+  STATUS_BAR_MODE_NONE,
+  STATUS_BAR_MODE_DEFAULT,
+};
+
 class MXScene : public MXView {
  public:
   MXScene();
+
+  virtual inline MXSceneStatusBarMode statusBarMode() const {
+    return STATUS_BAR_MODE_DEFAULT;
+  }
 
   bool isActive();
 

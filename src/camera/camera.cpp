@@ -64,7 +64,7 @@ void CameraClass::update() {
     return;
   }
   uint8_t *bitmap = (uint8_t *)fb->buf;
-  Display.drawBitmap(bitmap, DISPLAY_OFFSET_X, DISPLAY_OFFSET_Y, fb->width,
+  Display.drawBitmap(bitmap, (Display.width() - fb->width) / 2, -1, fb->width,
                      fb->height);
   esp_camera_fb_return(fb);
   fb = nullptr;

@@ -12,6 +12,10 @@ class CameraScene : public MXScene {
     return _instance;
   }
 
+  inline MXSceneStatusBarMode statusBarMode() const override {
+    return STATUS_BAR_MODE_NONE;
+  }
+
  protected:
   void onInit() override;
   void onShow() override;
