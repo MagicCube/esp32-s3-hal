@@ -15,11 +15,11 @@ void hal_setup() {
   Serial.begin(115200);
   Display.begin();
   Audio.begin();
-  // Audio.playSystemSound(SYSTEM_SOUND_STARTUP);
 #ifdef DISPLAY_ST77916
   Display.rotate(180);
 #endif
-  // delay(500);
+  // Audio.playSystemSound(SYSTEM_SOUND_STARTUP);
+  // delay(250);
 }
 
 void spiffs_setup() {
