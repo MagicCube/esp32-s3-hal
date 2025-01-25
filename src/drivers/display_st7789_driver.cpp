@@ -47,6 +47,7 @@ void show_splash_screen(ESP_PanelLcd* lcd, const char* fileName) {
                                    DISPLAY_RES_WIDTH, DISPLAY_RES_HEIGHT,
                                    splash_screen_data);
     delete[] splash_screen_data;
+    splash_screen_file.close();
   }
 }
 
