@@ -1,7 +1,7 @@
 #pragma once
 
 #include <mx.h>
-#include <wifi/wifi_connector.h>
+#include <wifi_connector.h>
 
 class StatusBar : public MXView {
  public:
