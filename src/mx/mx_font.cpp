@@ -26,8 +26,7 @@ MXFontData *preload_font_data(const char *name) {
   font_data->data = (uint8_t *)malloc(font_data->size);
   file.read(font_data->data, font_data->size);
   file.close();
-  Serial.printf("Loaded font file '%s', size: %d\n", path.c_str(),
-                font_data->size);
+  Serial.printf("Loaded font file '%s'\n", path.c_str());
   return font_data;
 }
 
