@@ -9,7 +9,6 @@ void CallAgentScene::onInit() {
                       ->add_label("00:00")
                       ->w_full()
                       ->center_x(0, 28)
-                      ->font(&lv_font_montserrat_14)
                       ->text_center()
                       ->text_secondary();
   nameLabel = root()

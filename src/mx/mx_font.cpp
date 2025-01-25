@@ -55,8 +55,6 @@ void mx_preload_fonts() {
       lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 36);
   lv_font_pingfang_medium_48 =
       lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 48);
-
-  delete pingfang_medium;
 }
 
 lv_font_t *make_icon_font(size_t size) {

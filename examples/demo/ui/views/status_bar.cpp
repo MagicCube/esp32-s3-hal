@@ -14,7 +14,7 @@ void StatusBar::onInit() {
       ->y(12)
       ->add_flag(LV_OBJ_FLAG_FLOATING);
 
-  timeLabel = root()->add_label()->font(&lv_font_montserrat_14);
+  timeLabel = root()->add_label();
 
   right = root()->add_object()->flex_row()->gap(8);
   wifiIndicator = right->add_label()->h(17)->p_y(0)->text_opacity(0.4)->font(
