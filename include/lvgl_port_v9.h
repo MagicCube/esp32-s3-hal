@@ -55,7 +55,7 @@ inline void lv_setup_theme() {
       lv_color_make(0x30, 0x6f, 0xff), /* Primary color */
       lv_color_make(0x3f, 0xd4, 0xcf), /* Secondary color */
       true,                            /* Dark theme? */
-      &lv_font_montserrat_16);
+      &lv_font_montserrat_12);
 
   lv_display_set_theme(lv_display_get_default(),
                        th); /* Assign theme to display */
