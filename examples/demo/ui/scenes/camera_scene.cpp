@@ -1,6 +1,6 @@
 #include "camera_scene.h"
 
-#include "camera.h"
+#include <camera.h>
 
 CameraScene* CameraScene::_instance = nullptr;
 

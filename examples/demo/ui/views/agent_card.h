@@ -3,18 +3,16 @@
 #include "../../agents/agent_manager.h"
 #include "mx.h"
 
-LV_IMAGE_DECLARE(img_agent_card_bg);
-
 #define AGENT_CARD_W 188
 #define AGENT_CARD_H 224
 
 class AgentCard : public MXView {
  public:
-  ~AgentCard() { delete background; }
+  inline ~AgentCard() { delete background; }
 
-  uint8_t agentIndex() { return currentAgentIndex; }
+  inline uint8_t agentIndex() { return currentAgentIndex; }
 
-  void setAgentIndex(uint8_t index) {
+  inline void setAgentIndex(uint8_t index) {
     currentAgentIndex = index;
     const Agent* agent = AgentManager.agent(currentAgentIndex);
     nameLabel->text(agent->name);
@@ -26,7 +24,7 @@ class AgentCard : public MXView {
     avatarImage->src(agent->avatar);
   }
 
-  void translateY(float y) {
+  inline void translateY(float y) {
     lv_obj_t* lv_card = root()->lv_object();
     lv_obj_set_style_translate_y(lv_card, y, LV_PART_MAIN);
     root()->h(AGENT_CARD_H - y);
@@ -38,7 +36,7 @@ class AgentCard : public MXView {
   MXObject* nameLabel;
   MXObject* background;
 
-  void onInit() override {
+  inline void onInit() override {
     MXView::onInit();
 
     root()
@@ -50,7 +48,7 @@ class AgentCard : public MXView {
     lv_obj_set_style_transform_pivot_x(lv_card, AGENT_CARD_W / 2, LV_PART_MAIN);
     lv_obj_set_style_transform_pivot_y(lv_card, AGENT_CARD_H / 2, LV_PART_MAIN);
 
-    background = root()->add_image(&img_agent_card_bg);
+    background = root()->add_image("/spiffs/agent_card_bg.png");
     nameLabel = root()
                     ->add_label("", MX_FONT_SIZE_3XL)
                     ->center_x()

@@ -1,11 +1,11 @@
 #pragma once
 
+#include <display.h>
+#include <mx.h>
+
 #include "../../agents/agent_manager.h"
 #include "../../utils/scale_map.h"
 #include "agent_card.h"
-#include "mx.h"
-
-LV_IMAGE_DECLARE(img_agent_card_bottom);
 
 class AgentCardRoller : public MXView {
  public:
@@ -95,11 +95,10 @@ class AgentCardRoller : public MXView {
     translateYScaleMap2 = new ScaleMap(174, 374, TRANSLATE_Y_MAX, 0);
 
     bottom = root()
-                 ->add_image(&img_agent_card_bottom)
-                 ->size(img_agent_card_bottom.header.w,
-                        img_agent_card_bottom.header.h)
+                 ->add_image("/spiffs/agent_card_bottom.png")
+                 ->size(240 * 1.1, 136 * 1.1)
                  ->center_x()
-                 ->y(174)
+                 ->y(Display.height() - 120)
                  ->image_scale(1.1);
     bottom->add_flag(LV_OBJ_FLAG_FLOATING);
   }
