@@ -1,6 +1,5 @@
 #pragma once
 
-#include <lvgl.h>
 #include <mx.h>
 
 #include "../views/agent_card_roller.h"
