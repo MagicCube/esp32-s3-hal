@@ -1,6 +1,6 @@
 #pragma once
 
-#include "agents/agent_manager.h"
+#include "../../agents/agent_manager.h"
 #include "mx.h"
 
 class AgentCard : public MXView {

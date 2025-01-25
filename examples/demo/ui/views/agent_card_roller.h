@@ -3,9 +3,9 @@
 #include <display.h>
 #include <mx.h>
 
+#include "../../agents/agent_manager.h"
+#include "../../utils/scale_map.h"
 #include "agent_card.h"
-#include "agents/agent_manager.h"
-#include "utils/scale_map.h"
 
 class AgentCardRoller : public MXView {
  public:
