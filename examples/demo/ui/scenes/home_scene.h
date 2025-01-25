@@ -7,6 +7,8 @@
 
 class HomeScene : public MXScene {
  public:
+  ~HomeScene() { delete button; }
+
   inline static HomeScene* instance() {
     if (_instance == nullptr) {
       _instance = new HomeScene();
@@ -16,6 +18,7 @@ class HomeScene : public MXScene {
   }
 
  protected:
+  MXObject* button;
   void onInit() override;
 
  private:
