@@ -1,6 +1,7 @@
 #include "wifi_connector.h"
 
 #include <WiFi.h>
+#include <esp_wifi.h>
 #include <time.h>
 
 void WiFiConnectorClass::addKnownSSID(const String& ssid,
@@ -47,7 +48,9 @@ void WiFiConnectorClass::connect(const String& ssid, const String& password) {
 
   _connectedSSID = "";
   setState(WIFI_CONNECTOR_STATE_CONNECTING);
+
   WiFi.begin(ssid.c_str(), password.c_str());
+  esp_wifi_set_max_tx_power(84);
   Serial.printf("WiFiConnector is connecting to %s\n", ssid.c_str());
 }
 
