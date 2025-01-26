@@ -188,6 +188,7 @@ class MXObject {
     return transform_origin(lv_pct(50), lv_pct(50));
   }
   MXObject* transform_rotate(const float degrees);
+  MXObject* transform_scale(const float scale);
   // MXObject* transform_translate(const lv_coord_t x, const lv_coord_t y);
   // MXObject* transform_translate_x(const lv_coord_t x);
   // MXObject* transform_translate_y(const lv_coord_t y);
