@@ -22,6 +22,7 @@ MXObject* MXObject::reset_to_default() {
   rounded(0);
   bg_transparent();
   scrollable(false);
+  transform_origin_center();
   return this;
 }
 
@@ -365,6 +366,11 @@ MXObject* MXObject::transform_origin(const lv_coord_t x, const lv_coord_t y) {
 
 MXObject* MXObject::transform_rotate(const float degrees) {
   lv_obj_set_style_transform_angle(lv_obj, degrees * 10, LV_PART_MAIN);
+  return this;
+}
+
+MXObject* MXObject::transform_scale(const float scale) {
+  lv_obj_set_style_transform_scale(lv_obj, scale * LV_SCALE_NONE, LV_PART_MAIN);
   return this;
 }
 
