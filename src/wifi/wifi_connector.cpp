@@ -39,6 +39,8 @@ void WiFiConnectorClass::scan() {
   WiFi.scanNetworks(true, false, false, 120UL);
 
   Serial.println("WiFiConnector is scanning...");
+  String macAddress = WiFi.macAddress();
+  Serial.println("Device MAC Address: " + macAddress);
 }
 
 void WiFiConnectorClass::connect(const String& ssid, const String& password) {
