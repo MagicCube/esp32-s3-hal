@@ -1,3 +1,4 @@
+#ifdef CAM_D0
 #include "camera_scene.h"
 
 #include <camera.h>
@@ -25,3 +26,4 @@ void CameraScene::onDeactivating() {
   MXScene::onDeactivating();
   Camera.end();
 }
+#endif

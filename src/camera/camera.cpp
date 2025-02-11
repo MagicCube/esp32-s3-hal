@@ -1,3 +1,4 @@
+#ifdef CAM_D0
 #include "camera.h"
 
 #include "display.h"
@@ -81,3 +82,4 @@ void CameraClass::startLiveView() { _liveViewing = true; }
 void CameraClass::stopLiveView() { _liveViewing = false; }
 
 CameraClass Camera;
+#endif

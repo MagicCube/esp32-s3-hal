@@ -1,6 +1,8 @@
 #include "home_scene.h"
 
+#ifdef CAM_D0
 #include "camera_scene.h"
+#endif
 #include "select_agent_scene.h"
 
 HomeScene* HomeScene::_instance = nullptr;
@@ -9,7 +11,9 @@ LV_IMG_DECLARE(img_home_scene_bg);
 
 AppInfo APP_INFO_LIST[6] = {
     {"call_agent", "通话", "\uf095", rgb(0x31C959)},
+#ifdef CAM_D0
     {"camera", "相机", "\uf030", rgb(0x36BC9B)},
+#endif
     {"music", "音乐", "\uf001", rgb(0xE64D3D)},
     {"aigc", "绘话", "\ue2ca", rgb(0x4FC0E8)},
     {"studio", "智能体", "\uf4ff", rgb(0xF1C30E)},
@@ -63,6 +67,8 @@ void HomeScene::handleAppButtonClick(const AppInfo& appInfo) {
   if (strcmp(appInfo.id, "call_agent") == 0) {
     SelectAgentScene::instance()->show();
   } else if (strcmp(appInfo.id, "camera") == 0) {
+#ifdef CAM_D0
     CameraScene::instance()->show();
+#endif
   }
 }

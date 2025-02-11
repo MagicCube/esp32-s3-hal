@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef CAM_D0
 #include <mx.h>
 
 class CameraScene : public MXScene {
@@ -25,3 +26,5 @@ class CameraScene : public MXScene {
  private:
   static CameraScene* _instance;
 };
+
+#endif

@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef CAM_D0
+
 #include <Arduino.h>
 #include <esp_camera.h>
 
@@ -24,3 +26,5 @@ class CameraClass {
 };
 
 extern CameraClass Camera;
+
+#endif
