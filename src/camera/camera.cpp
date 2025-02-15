@@ -1,9 +1,9 @@
-#ifdef CAM_D0
 #include "camera.h"
 
 #include "display.h"
 #include "pin_conf.h"
 
+#ifdef CAM_D0
 void CameraClass::begin() {
   camera_config_t camera_config = {
       .pin_pwdn = CAM_PWDN,

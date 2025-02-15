@@ -1,10 +1,10 @@
 #pragma once
 
-#ifdef CAM_D0
-
 #include <Arduino.h>
 #include <esp_camera.h>
+#include <pin_conf.h>
 
+#ifdef CAM_D0
 class CameraClass {
  public:
   bool initialized() const { return _initialized; }
