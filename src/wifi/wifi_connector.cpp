@@ -39,8 +39,6 @@ void WiFiConnectorClass::scan() {
   WiFi.scanNetworks(true, false, false, 120UL);
 
   Serial.println("WiFiConnector is scanning...");
-  String macAddress = WiFi.macAddress();
-  Serial.println("Device MAC Address: " + macAddress);
 }
 
 void WiFiConnectorClass::connect(const String& ssid, const String& password) {
@@ -81,7 +79,6 @@ void WiFiConnectorClass::onScanResult(int n) {
     Serial.println("WiFiConnector scan timeout");
     setState(WIFI_CONNECTOR_STATE_INITIAL);
   } else {
-    Serial.println("WiFiConnector continue scanning...");
     scan();
   }
 }
