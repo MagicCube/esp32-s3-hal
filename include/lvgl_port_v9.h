@@ -9,7 +9,7 @@
 #endif
 #define DRAW_BUFFER_HEIGHT DISPLAY_RES_HEIGHT
 #define DRAW_BUFFER_SIZE \
-  (DISPLAY_RES_WIDTH * (DRAW_BUFFER_HEIGHT) * (LV_COLOR_DEPTH / 8))
+  (DISPLAY_RES_WIDTH * (DRAW_BUFFER_HEIGHT) * (LV_COLOR_DEPTH / 8)) / 2
 uint32_t *draw_buffer =
     (uint32_t *)heap_caps_malloc(DRAW_BUFFER_SIZE, MALLOC_CAP_SPIRAM);
 uint32_t *draw_buffer_2 =
