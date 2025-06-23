@@ -3,14 +3,15 @@
 #include <SPIFFS.h>
 #include <lvgl.h>
 
-const lv_font_t *lv_font_pingfang_medium_14 = nullptr;
-const lv_font_t *lv_font_pingfang_medium_16 = nullptr;
-const lv_font_t *lv_font_pingfang_medium_18 = nullptr;
-const lv_font_t *lv_font_pingfang_medium_20 = nullptr;
-const lv_font_t *lv_font_pingfang_medium_24 = nullptr;
-const lv_font_t *lv_font_pingfang_medium_30 = nullptr;
-const lv_font_t *lv_font_pingfang_medium_36 = nullptr;
-const lv_font_t *lv_font_pingfang_medium_48 = nullptr;
+const lv_font_t *lv_font_pingfang_regular_14 = nullptr;
+const lv_font_t *lv_font_pingfang_regular_16 = nullptr;
+const lv_font_t *lv_font_pingfang_regular_18 = nullptr;
+const lv_font_t *lv_font_pingfang_regular_20 = nullptr;
+const lv_font_t *lv_font_pingfang_regular_24 = nullptr;
+const lv_font_t *lv_font_pingfang_regular_30 = nullptr;
+const lv_font_t *lv_font_pingfang_regular_36 = nullptr;
+const lv_font_t *lv_font_pingfang_regular_48 = nullptr;
+const lv_font_t *lv_font_pingfang_regular_64 = nullptr;
 
 MXFontData mx_font_data_font_awesome = {nullptr, 0};
 
@@ -33,27 +34,29 @@ MXFontData *preload_font_data(const char *name) {
 void mx_preload_fonts() {
   mx_font_data_font_awesome = *preload_font_data("font_awesome");
 
-  MXFontData *pingfang_medium = preload_font_data("pingfang_medium");
-  if (!pingfang_medium) {
+  MXFontData *pingfang_regular = preload_font_data("pingfang_regular");
+  if (!pingfang_regular) {
     return;
   }
 
-  lv_font_pingfang_medium_14 =
-      lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 14);
-  lv_font_pingfang_medium_16 =
-      lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 16);
-  lv_font_pingfang_medium_18 =
-      lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 18);
-  lv_font_pingfang_medium_20 =
-      lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 20);
-  lv_font_pingfang_medium_24 =
-      lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 24);
-  lv_font_pingfang_medium_30 =
-      lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 30);
-  lv_font_pingfang_medium_36 =
-      lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 36);
-  lv_font_pingfang_medium_48 =
-      lv_tiny_ttf_create_data(pingfang_medium->data, pingfang_medium->size, 48);
+  lv_font_pingfang_regular_14 = lv_tiny_ttf_create_data(
+      pingfang_regular->data, pingfang_regular->size, 14);
+  lv_font_pingfang_regular_16 = lv_tiny_ttf_create_data(
+      pingfang_regular->data, pingfang_regular->size, 16);
+  lv_font_pingfang_regular_18 = lv_tiny_ttf_create_data(
+      pingfang_regular->data, pingfang_regular->size, 18);
+  lv_font_pingfang_regular_20 = lv_tiny_ttf_create_data(
+      pingfang_regular->data, pingfang_regular->size, 20);
+  lv_font_pingfang_regular_24 = lv_tiny_ttf_create_data(
+      pingfang_regular->data, pingfang_regular->size, 24);
+  lv_font_pingfang_regular_30 = lv_tiny_ttf_create_data(
+      pingfang_regular->data, pingfang_regular->size, 30);
+  lv_font_pingfang_regular_36 = lv_tiny_ttf_create_data(
+      pingfang_regular->data, pingfang_regular->size, 36);
+  lv_font_pingfang_regular_48 = lv_tiny_ttf_create_data(
+      pingfang_regular->data, pingfang_regular->size, 48);
+  lv_font_pingfang_regular_64 = lv_tiny_ttf_create_data(
+      pingfang_regular->data, pingfang_regular->size, 64);
 }
 
 lv_font_t *make_icon_font(size_t size) {

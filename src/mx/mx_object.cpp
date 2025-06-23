@@ -290,31 +290,31 @@ MXObject* MXObject::text_format(const char* format, ...) {
 MXObject* MXObject::text(const MXFontSize size) {
   switch (size) {
     case MX_FONT_SIZE_14:
-      font(lv_font_pingfang_medium_14);
+      font(lv_font_pingfang_regular_14);
       break;
     case MX_FONT_SIZE_16:
-      font(lv_font_pingfang_medium_16);
+      font(lv_font_pingfang_regular_16);
       break;
     case MX_FONT_SIZE_18:
-      font(lv_font_pingfang_medium_18);
+      font(lv_font_pingfang_regular_18);
       break;
     case MX_FONT_SIZE_20:
-      font(lv_font_pingfang_medium_20);
+      font(lv_font_pingfang_regular_20);
       break;
     case MX_FONT_SIZE_24:
-      font(lv_font_pingfang_medium_24);
+      font(lv_font_pingfang_regular_24);
       break;
     case MX_FONT_SIZE_30:
-      font(lv_font_pingfang_medium_30);
+      font(lv_font_pingfang_regular_30);
       break;
     case MX_FONT_SIZE_36:
-      font(lv_font_pingfang_medium_36);
+      font(lv_font_pingfang_regular_36);
       break;
     case MX_FONT_SIZE_48:
-      font(lv_font_pingfang_medium_48);
+      font(lv_font_pingfang_regular_48);
       break;
     default:
-      font(lv_font_pingfang_medium_16);
+      font(lv_font_pingfang_regular_16);
       break;
   }
   return this;
