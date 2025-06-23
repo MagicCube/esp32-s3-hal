@@ -14,7 +14,7 @@ class LCDDisplay {
 
   uint16_t height() const;
 
-  void setBrightness(const uint8_t angle);
+  void setBrightness(const uint8_t brightness);
 
   void sleep();
 
