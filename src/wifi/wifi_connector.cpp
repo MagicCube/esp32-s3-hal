@@ -27,9 +27,9 @@ void WiFiConnectorClass::update() {
     if (WiFi.status() == WL_CONNECTED) {
       _connectedSSID = WiFi.SSID();
       setState(WIFI_CONNECTOR_STATE_CONNECTED);
-      onConnected();
       Serial.printf("WiFiConnector is now connected to %s\n",
                     _connectedSSID.c_str());
+      onConnected();
     }
   }
 }
